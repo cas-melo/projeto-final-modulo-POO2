@@ -4,13 +4,13 @@ import util.TipoVeiculo;
 
 public abstract class Veiculo {
     private String placa;
-    private String modelo;
+    private String nome;
     private TipoVeiculo tipo;
     private boolean disponivel;
 
     public Veiculo(String placa, String modelo, TipoVeiculo tipo) {
         this.placa = placa;
-        this.modelo = modelo;
+        this.nome = modelo;
         this.tipo = tipo;
         this.disponivel = true;
     }
@@ -19,8 +19,8 @@ public abstract class Veiculo {
         return placa;
     }
 
-    public String getModelo() {
-        return modelo;
+    public String getNome() {
+        return nome;
     }
 
     public TipoVeiculo getTipo() {
