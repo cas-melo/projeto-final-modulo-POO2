@@ -6,7 +6,7 @@ public class CalculadoraDesconto implements Desconto {
     public double calcularDesconto(double valorTotal, int duracaoAluguel) {
 
         // TODO
-        
+
         return 0;
     }
 }
