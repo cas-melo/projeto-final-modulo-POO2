@@ -1,17 +1,17 @@
 package controller;
-import models.veiculos.Veiculo;
+import models.Veiculo;
 import java.util.ArrayList;
 import java.util.List;
 
 public class VeiculoController {
 
-    private VeiculoBuscador veiculoBuscador;
+    private BuscadorController veiculoBuscador;
     private List<Veiculo> veiculos;
 
 
 
     public VeiculoController() {
-        this.veiculoBuscador = new VeiculoBuscador();
+        this.veiculoBuscador = new BuscadorController();
         this.veiculos = new ArrayList<>();
     }
 

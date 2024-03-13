@@ -1,4 +1,4 @@
-package models.veiculos;
+package models;
 
 import util.TipoVeiculo;
 
@@ -35,6 +35,5 @@ public abstract class Veiculo {
         this.disponivel = disponivel;
     }
 
-    public abstract double getValorDiaria();
 
 }

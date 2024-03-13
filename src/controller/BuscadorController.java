@@ -1,12 +1,11 @@
 package controller;
 
-import models.veiculos.Veiculo;
+import models.Veiculo;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class VeiculoBuscador {
+public class BuscadorController {
 
     public List<Veiculo> buscarPorNome(List<Veiculo> veiculos, String nome) {
         if (veiculos == null || nome == null) {
