@@ -12,7 +12,6 @@ public class MenuPrincipal {
     public MenuPrincipal() {
         this.scanner = new Scanner(System.in);
         this.veiculoController = new VeiculoController();
-        // Inicialize outros controladores aqui
     }
 
     int escolha;
