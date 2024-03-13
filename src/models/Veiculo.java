@@ -36,6 +36,5 @@ public abstract class Veiculo {
     }
 
     public abstract double getValorDiaria();
-    public abstract void alugar();
-    public abstract void devolver();
+
 }
