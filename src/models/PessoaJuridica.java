@@ -10,11 +10,11 @@ public class PessoaJuridica extends Cliente {
         this.cnpj = GeradorCNPJ.gerarCNPJ();
     }
 
-    public String getCnpj() {
+    public String getDocumento() {
         return cnpj;
     }
 
-    public void setCnpj(String cnpj) {
+    public void setDocumento(String cnpj) {
         this.cnpj = cnpj;
     }
 }

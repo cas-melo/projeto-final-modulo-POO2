@@ -1,6 +1,7 @@
 package view;
 
 import controller.VeiculoController;
+import models.Cliente;
 import util.TipoVeiculo;
 import models.Veiculo;
 import java.util.Scanner;
@@ -22,11 +23,11 @@ public class CadastroVeiculoView {
         System.out.print("Modelo do veículo: ");
         String modelo = scanner.nextLine();
         System.out.print("Tipo do veículo (PEQUENO, MEDIO ou SUV): ");
-        String tipoStr = scanner.next();
-        TipoVeiculo tipo = TipoVeiculo.valueOf(tipoStr.toUpperCase());
+        String tipoStr = scanner.next().toUpperCase();
+        TipoVeiculo tipo = TipoVeiculo.valueOf(tipoStr);
+        Cliente cliente = null;
 
-        // Chamar o controlador para cadastrar o veículo
-        Veiculo novoVeiculo = new Veiculo(marca, modelo, tipo);
+        Veiculo novoVeiculo = new Veiculo(marca, modelo, tipo, cliente);
         veiculoController.adicionarVeiculo(novoVeiculo);
     }
 }

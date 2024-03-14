@@ -10,11 +10,11 @@ public class PessoaFisica extends Cliente {
         this.cpf = GeradorCPF.gerarCPF();
     }
 
-    public String getCpf() {
+    public String getDocumento() {
         return cpf;
     }
 
-    public void setCpf(String cpf) {
+    public void setDocumento(String cpf) {
         this.cpf = cpf;
     }
 

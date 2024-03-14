@@ -24,4 +24,6 @@ public abstract class Cliente {
     public void setVeiculoAlugado(Veiculo veiculoAlugado) {
         this.veiculoAlugado = veiculoAlugado;
     }
+
+    public abstract String getDocumento();
 }
