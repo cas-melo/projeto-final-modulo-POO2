@@ -4,6 +4,8 @@ import models.Veiculo;
 
 import java.util.List;
 
+import static java.lang.StringTemplate.STR;
+
 public class ImprimirBuscaController {
 
     public void imprimirBusca(List<Veiculo> veiculos) {
