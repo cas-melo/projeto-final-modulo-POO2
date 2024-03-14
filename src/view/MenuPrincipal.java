@@ -8,10 +8,12 @@ public class MenuPrincipal {
 
     private Scanner scanner;
     private VeiculoController veiculoController;
+    private CadastroVeiculoView cadastroVeiculoView;
 
     public MenuPrincipal() {
         this.scanner = new Scanner(System.in);
         this.veiculoController = new VeiculoController();
+        this.cadastroVeiculoView = new CadastroVeiculoView(veiculoController);
     }
 
     int escolha;
@@ -34,7 +36,7 @@ public class MenuPrincipal {
 
             switch (escolha) {
                 case 1:
-                    // cadastrarVeiculo
+                    cadastroVeiculoView.exibirFormularioCadastro();
                     break;
                 case 2:
                     // alterarVeiculo

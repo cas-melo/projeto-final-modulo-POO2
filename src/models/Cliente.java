@@ -2,11 +2,11 @@ package models;
 
 public abstract class Cliente {
     private String nome;
-    private String telefone;
+    private Veiculo veiculoAlugado;
 
-    public Cliente(String nome, String telefone) {
+    public Cliente(String nome, Veiculo veiculoAlugado) {
         this.nome = nome;
-        this.telefone = telefone;
+        this.veiculoAlugado = veiculoAlugado;
     }
 
     public String getNome() {
@@ -17,11 +17,11 @@ public abstract class Cliente {
         this.nome = nome;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public Veiculo getVeiculoAlugado() {
+        return veiculoAlugado;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setVeiculoAlugado(Veiculo veiculoAlugado) {
+        this.veiculoAlugado = veiculoAlugado;
     }
 }

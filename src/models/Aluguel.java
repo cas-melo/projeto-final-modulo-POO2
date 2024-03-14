@@ -44,9 +44,4 @@ public class Aluguel {
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
-
-    private void calcularValorTotal(Veiculo veiculo) {
-        // TODO
-
-    }
 }
