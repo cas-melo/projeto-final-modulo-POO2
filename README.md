@@ -8,13 +8,16 @@ Descrição do Projeto
 O projeto final do Módulo III - Programação Orientada a Objetos II consiste na criação de uma aplicação que gerencie o aluguel de veículos, aplicando os conceitos vistos em aula, onde cada item abaixo seja considerado:
 
 <h3>Itens obrigatórios</h3>
--Cadastrar os veículos;
--Alterar um veículo cadastrado;
--Buscar um veículo por parte do nome;
--Cadastrar o cliente (pessoa física e jurídica)
--Alterar o cliente (pessoa física e jurídica)
--Alugar um veículo para pessoa física e jurídica;
--Devolver um veículo para pessoa física e jurídica;
+
+<ul>-Cadastrar os veículos;
+<li>Alterar um veículo cadastrado;</li>
+<li>Buscar um veículo por parte do nome;</li>
+<li>Cadastrar o cliente (pessoa física e jurídica)</li>
+<li>Alterar o cliente (pessoa física e jurídica)</li>
+<li>Alugar um veículo para pessoa física e jurídica;</li>
+<li>Devolver um veículo para pessoa física e jurídica;</li>
+</ul>
+
 
 <h3>Regras de negócio</h3>
 
