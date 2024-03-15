@@ -9,7 +9,7 @@ O projeto final do Módulo III - Programação Orientada a Objetos II consiste n
 
 <h3>Itens obrigatórios</h3>
 
-<ul>-Cadastrar os veículos;
+<ul>-<li>Cadastrar os veículos;</li>
 <li>Alterar um veículo cadastrado;</li>
 <li>Buscar um veículo por parte do nome;</li>
 <li>Cadastrar o cliente (pessoa física e jurídica)</li>
