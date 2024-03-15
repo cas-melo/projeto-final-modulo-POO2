@@ -17,17 +17,36 @@ public class CadastroVeiculoView {
 
     public void exibirFormularioCadastro() {
         System.out.println("\n### Cadastro de Veículo ###");
-        System.out.println("Placa cadastrada automaticamente");
+
         System.out.print("Marca do veículo: ");
         String marca = scanner.nextLine();
+
         System.out.print("Modelo do veículo: ");
         String modelo = scanner.nextLine();
-        System.out.print("Tipo do veículo (PEQUENO, MEDIO ou SUV): ");
-        String tipoStr = scanner.next().toUpperCase();
-        TipoVeiculo tipo = TipoVeiculo.valueOf(tipoStr);
+
+        TipoVeiculo tipo = solicitarTipoVeiculo();
+
         Cliente cliente = null;
 
-        Veiculo novoVeiculo = new Veiculo(marca, modelo, tipo, cliente);
-        veiculoController.adicionarVeiculo(novoVeiculo);
+        veiculoController.adicionarVeiculo(marca, modelo, tipo, cliente);
+    }
+
+    private TipoVeiculo solicitarTipoVeiculo(){
+        TipoVeiculo tipo = null;
+        boolean tipoValido = false;
+
+        while (!tipoValido) {
+            try {
+                System.out.print("Tipo do veículo (PEQUENO, MEDIO ou SUV): ");
+                String tipoStr = scanner.next().toUpperCase();
+                tipo = TipoVeiculo.valueOf(tipoStr);
+                tipoValido = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Tipo de veículo inválido. Por favor, insira PEQUENO, MEDIO ou SUV.");
+                scanner.nextLine();
+            }
+        }
+
+        return tipo;
     }
 }

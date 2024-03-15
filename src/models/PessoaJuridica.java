@@ -11,10 +11,14 @@ public class PessoaJuridica extends Cliente {
     }
 
     public String getDocumento() {
-        return cnpj;
+        return "CNPJ: " + this.cnpj;
     }
 
     public void setDocumento(String cnpj) {
         this.cnpj = cnpj;
+    }
+
+    public String getTipoDocumento(){
+        return "CPF";
     }
 }
