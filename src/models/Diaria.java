@@ -33,7 +33,8 @@ public class Diaria {
 
    public double getValorTotal() {
        double valorBase = getValorBase();
-       double descontoAplicado = desconto.calcularDesconto(valorBase, totalDias);
-       return valorBase * (1 - descontoAplicado);
+       double valorTotal = valorBase * totalDias;
+       double descontoAplicado = desconto.calcularDesconto(valorTotal, totalDias);
+       return valorTotal * (1 - descontoAplicado);
    }
 }
