@@ -14,6 +14,8 @@ public class MenuPrincipal {
     private AluguelView aluguelView;
     private DevolucaoView devolucaoView;
 
+    private EdicaoVeiculoView edicaoVeiculoView;
+
     public MenuPrincipal() {
         this.scanner = new Scanner(System.in);
         this.veiculoController = new VeiculoController();
@@ -22,6 +24,7 @@ public class MenuPrincipal {
         this.cadastroVeiculoView = new CadastroVeiculoView(veiculoController);
         this.aluguelView = new AluguelView(veiculoController, aluguelController);
         this.devolucaoView = new DevolucaoView(veiculoController, devolucaoController, aluguelController);
+        this.edicaoVeiculoView = new EdicaoVeiculoView(veiculoController);
     }
 
     int escolha;
@@ -77,7 +80,7 @@ public class MenuPrincipal {
                 cadastroVeiculoView.exibirFormularioCadastro();
                 break;
             case 3:
-                // alterarVeiculo
+                edicaoVeiculoView.exibirEdicaoVeiculo();
                 break;
             case 4:
                 // buscarVeiculoPorNome
@@ -151,7 +154,7 @@ public class MenuPrincipal {
     public void exibirVeiculos(){
         System.out.println("\n### VEÍCULOS CADASTRADOS ###");
         for (Veiculo veiculo : veiculoController.listarVeiculos()) {
-            System.out.println("\nModelo: " + veiculo.getMarca() + " " + veiculo.getNome() +
+            System.out.println("\nModelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
                     " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());
 
             if (veiculo.isDisponivel()){
@@ -177,7 +180,7 @@ public class MenuPrincipal {
         for (Aluguel aluguel : aluguelController.listarAlugueis()) {
             String dataInicioFormat = devolucaoController.formatarLocalDateTime(aluguel.getDataInicio());
 
-            System.out.println("\nModelo: " + aluguel.getVeiculo().getMarca() + " " + aluguel.getVeiculo().getNome() +
+            System.out.println("\nModelo: " + aluguel.getVeiculo().getMarca() + " " + aluguel.getVeiculo().getModelo() +
                     " | Placa: " + aluguel.getVeiculo().getPlaca() + " | Tipo: " + aluguel.getVeiculo().getTipo());
             System.out.println("Cliente: " + aluguel.getCliente().getNome() + " | " +
                     aluguel.getCliente().getTipoDocumento() + ": " + aluguel.getCliente().getDocumento());
@@ -197,7 +200,7 @@ public class MenuPrincipal {
             String dataInicioFormat = devolucaoController.formatarLocalDateTime(devolucao.getDataInicio());
             String dataFimFormat = devolucaoController.formatarLocalDateTime(devolucao.getDataFim());
 
-            System.out.println("\nModelo: " + devolucao.getVeiculo().getMarca() + " " + devolucao.getVeiculo().getNome() +
+            System.out.println("\nModelo: " + devolucao.getVeiculo().getMarca() + " " + devolucao.getVeiculo().getModelo() +
                     " | Placa: " + devolucao.getVeiculo().getPlaca() + " | Tipo: " + devolucao.getVeiculo().getTipo());
             System.out.println("Cliente: " + devolucao.getCliente().getNome() + " | " +
                     devolucao.getCliente().getTipoDocumento() + ": " + devolucao.getCliente().getDocumento());
