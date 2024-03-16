@@ -36,4 +36,17 @@ public class GeradorPlaca {
         return placa.toString();
     }
 
+    public static boolean validarPlaca(String placa) {
+
+        String regexPlaca = "^[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}$";
+
+
+        if (placa == null || placa.isEmpty()) {
+            return false;
+        }
+
+
+        return placa.matches(regexPlaca);
+    }
+
 }
