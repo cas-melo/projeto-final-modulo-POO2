@@ -41,7 +41,7 @@ public class DevolucaoController {
         atualizador.atualizarEstadoVeiculoDisponivel(veiculo);
         atualizador.atualizarEstadoClienteDevolveu(aluguel.getCliente());
 
- 
+
         devolucoes.add(devolucao);
         System.out.println("Devolução registrada com sucesso!");
     }
