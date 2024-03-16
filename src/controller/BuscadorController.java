@@ -14,7 +14,7 @@ public class BuscadorController {
 
         String nomeBusca = nome.toLowerCase();
         return veiculos.stream()
-                .filter(veiculo -> veiculo.getNome().toLowerCase().contains(nomeBusca))
+                .filter(veiculo -> veiculo.getModelo().toLowerCase().contains(nomeBusca))
                 .collect(Collectors.toList());
     }
 }

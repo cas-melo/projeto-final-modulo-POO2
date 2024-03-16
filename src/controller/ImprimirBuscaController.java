@@ -16,7 +16,7 @@ public class ImprimirBuscaController {
 
         System.out.println("Veículos encontrados:");
         for (Veiculo veiculo : veiculos) {
-            System.out.println(STR."Nome: \{veiculo.getNome()}, Placa: \{veiculo.getPlaca()}");
+            System.out.println(STR."Nome: \{veiculo.getModelo()}, Placa: \{veiculo.getPlaca()}");
         }
     }
 

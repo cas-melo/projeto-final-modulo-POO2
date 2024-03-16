@@ -5,6 +5,7 @@ import util.TipoVeiculo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class VeiculoController {
 
@@ -27,6 +28,14 @@ public class VeiculoController {
         System.out.println("Placa cadastrada automaticamente");
         this.veiculos.add(novoVeiculo);
         System.out.println("Veículo cadastrado com sucesso!\n");
+    }
+
+    public void alterarVeiculo(String placa, String marca, String modelo, TipoVeiculo tipo) {
+        Veiculo veiculo = buscarVeiculoPorPlaca(placa);
+        veiculo.setMarca(marca);
+        veiculo.setModelo(modelo);
+        veiculo.setTipo(tipo);
+
     }
 
     private boolean placaJaExistente(String placa) {
@@ -53,5 +62,26 @@ public class VeiculoController {
 
     public List<Veiculo> buscarVeiculosPorNome(String nome) {
         return veiculoBuscador.buscarPorNome(veiculos, nome);
+    }
+
+    public TipoVeiculo solicitarTipoVeiculo(){
+        TipoVeiculo tipo = null;
+        boolean tipoValido = false;
+        Scanner scanner = new Scanner(System.in);
+
+        while (!tipoValido) {
+
+            try {
+                System.out.print("Tipo do veículo (PEQUENO, MEDIO ou SUV): ");
+                String tipoStr = scanner.next().toUpperCase();
+                tipo = TipoVeiculo.valueOf(tipoStr);
+                tipoValido = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Tipo de veículo inválido. Por favor, insira PEQUENO, MEDIO ou SUV.");
+                scanner.nextLine();
+            }
+        }
+
+        return tipo;
     }
 }
