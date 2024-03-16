@@ -7,8 +7,7 @@ public class PessoaFisica extends Cliente {
 
     public PessoaFisica(String nome, Veiculo veiculoAlugado, String cpf) {
         super(nome, veiculoAlugado);
-        this.cpf = cpf;  //TODO tirar teste
-        // this.cpf = GeradorCPF.gerarCPF(); //TODO inserir gerador
+        this.cpf = GeradorCPF.gerarCPF();
     }
 
     public String getDocumento() {

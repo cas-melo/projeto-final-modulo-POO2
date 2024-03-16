@@ -14,10 +14,13 @@ public class AluguelController {
 
     public void realizarAluguel(Veiculo veiculo, Cliente cliente, String cidade) {
         if (veiculo.isDisponivel()) {
+
             Aluguel aluguel = new Aluguel(veiculo, cliente, cidade, LocalDateTime.now());
-            veiculo.setDisponivel(false);
-            cliente.setVeiculoAlugado(veiculo);
-            veiculo.setCliente(cliente);
+            AtualizadorEstado atualizador = new AtualizadorEstado();
+
+            atualizador.atualizarEstadoVeiculoIndisponivel(veiculo, cliente);
+            atualizador.atualizarEstadoClienteAlugou(veiculo, cliente);
+
 
             this.alugueis.add(aluguel);
             System.out.println("Aluguel realizado com sucesso!");

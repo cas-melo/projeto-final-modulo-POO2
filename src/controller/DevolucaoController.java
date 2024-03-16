@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 public class DevolucaoController {
     private List<Devolucao> devolucoes;
     AluguelController aluguelController;
@@ -16,12 +18,14 @@ public class DevolucaoController {
     }
 
 
-    private void calcularValorTotal() {
-        // TODO
-    }
+
 
     public void registrarDevolucao(Veiculo veiculo, Aluguel aluguel, LocalDateTime dataFim){
-        //TODO: valorTotal = calcularValorTotal();
+
+        long totalDias = DAYS.between(aluguel.getDataInicio(), dataFim);
+        Desconto desconto = DescontoHelper.obterDesconto(aluguel.getCliente());
+        Diaria diaria = new Diaria(totalDias, veiculo.getTipo(), desconto);
+        double valorTotal = diaria.getValorTotal();
 
         if (veiculo.isDisponivel()){
             System.out.println("Veículo não pode ser devolvido pois não está alugado.");
@@ -29,16 +33,15 @@ public class DevolucaoController {
         }
 
         Devolucao devolucao = new Devolucao(veiculo, aluguel.getCliente(), aluguel.getCidade(),
-        aluguel.getDataInicio(), dataFim, 200); //TODO: substituir 200 p/ valorTotal
+        aluguel.getDataInicio(), dataFim, valorTotal);
+        AtualizadorEstado atualizador = new AtualizadorEstado();
 
         aluguelController.removerAluguel(aluguel);
 
-        veiculo.setDisponivel(true);
-        veiculo.setCliente(null);
+        atualizador.atualizarEstadoVeiculoDisponivel(veiculo);
+        atualizador.atualizarEstadoClienteDevolveu(aluguel.getCliente());
 
-        Cliente cliente = aluguel.getCliente();
-        cliente.setVeiculoAlugado(null);
-
+ 
         devolucoes.add(devolucao);
         System.out.println("Devolução registrada com sucesso!");
     }
