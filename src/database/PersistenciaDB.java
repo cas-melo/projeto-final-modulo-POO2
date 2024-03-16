@@ -1,11 +1,11 @@
-package util;
+package database;
 
 import models.Cliente;
 import models.Veiculo;
 import java.io.*;
 import java.util.List;
 
-public class PersistenciaUtil {
+public class PersistenciaDB {
 
     private static final String CAMINHO_CLIENTES = "clientes.dat";
     private static final String CAMINHO_VEICULOS = "veiculos.dat";
