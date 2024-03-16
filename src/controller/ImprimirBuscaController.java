@@ -19,5 +19,4 @@ public class ImprimirBuscaController {
             System.out.println(STR."Nome: \{veiculo.getModelo()}, Placa: \{veiculo.getPlaca()}");
         }
     }
-
 }
