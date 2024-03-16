@@ -9,15 +9,13 @@ public class Veiculo {
     private String modelo;
     private TipoVeiculo tipo;
     private boolean disponivel;
-    private Cliente cliente;
 
-    public Veiculo(String marca, String modelo, TipoVeiculo tipo, Cliente cliente) {
+    public Veiculo(String marca, String modelo, TipoVeiculo tipo) {
         this.placa = GeradorPlaca.gerarPlaca();
         this.marca = marca;
         this.modelo = modelo;
         this.tipo = tipo;
         this.disponivel = true;
-        this.cliente = cliente;
     }
 
     public String getPlaca() {
@@ -42,14 +40,6 @@ public class Veiculo {
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public void setMarca(String marca) {
