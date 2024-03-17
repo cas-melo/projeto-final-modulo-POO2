@@ -170,20 +170,8 @@ public class MenuPrincipal {
 
     // MENUS DE EXIBIÇÃO
     public void exibirVeiculos(){
-        System.out.println("\n### VEÍCULOS CADASTRADOS ###");
-        for (Veiculo veiculo : veiculoController.listarVeiculos()) {
-            System.out.println("\nModelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
-                    " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());
 
-            Cliente cliente = AluguelService.getClientePorVeiculo(veiculo);
-            if (cliente != null){
-                System.out.println("Alugado | Cliente: " + cliente.getNome() + "| " + cliente.getTipoDocumento()
-                + ": " + cliente.getDocumento());
-            }
-            else {
-                System.out.println("Disponível");
-            }
-        }
+        veiculoController.listarVeiculos();
 
         System.out.println("\nPressione ENTER para voltar ao menu principal.");
         scanner.nextLine();
@@ -192,24 +180,8 @@ public class MenuPrincipal {
     }
 
     public void exibirClientes(){
-        System.out.println("\n### LISTA CLIENTES ###");
+        clienteController.listarClientes();
 
-        for (Cliente cliente : clienteController.listarClientes()) {
-            System.out.print("\nNome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
-                    cliente.getDocumento());
-
-            List<Veiculo> veiculos = AluguelService.getVeiculosPorCliente(cliente);
-            if (veiculos.isEmpty()){
-                System.out.println("O cliente não possui veículos alugados.");
-                return;
-            }
-
-            System.out.println("\nVeículos:");
-            for (Veiculo veiculo : veiculos) {
-                System.out.println("Modelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
-                        " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());
-            }
-        }
         System.out.println("\nPressione ENTER para voltar ao menu principal.");
         scanner.nextLine();
         scanner.nextLine();

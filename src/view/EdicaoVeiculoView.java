@@ -22,11 +22,7 @@ public class EdicaoVeiculoView {
     public void exibirEdicaoVeiculo() {
         System.out.println("\n### Edição de Veículo ###");
 
-        System.out.println("Veículos cadastrados: ");
-        for (Veiculo veiculo : veiculoController.listarVeiculos()) {
-            System.out.println("\nModelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
-                    " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());
-        }
+        veiculoController.listarVeiculos();
 
         try {
 

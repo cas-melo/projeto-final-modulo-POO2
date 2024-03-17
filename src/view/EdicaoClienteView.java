@@ -19,7 +19,7 @@ public class EdicaoClienteView {
         System.out.println("\n### Edição de Cliente ###");
 
         System.out.println("Clientes cadastrados: ");
-        for (Cliente cliente : clienteController.listarClientes()) {
+        for (Cliente cliente : clienteController.listaDeClientes()) {
             System.out.print("\nNome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
                     cliente.getDocumento());
 
