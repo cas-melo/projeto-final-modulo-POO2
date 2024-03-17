@@ -7,12 +7,17 @@ import models.Veiculo;
 import util.TipoCliente;
 import util.TipoVeiculo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class ClienteController {
 
     private List<Cliente> clientes;
+
+    public ClienteController() {
+        this.clientes = new ArrayList<>();
+    }
 
     public void cadastrarCliente(String nome, TipoCliente tipo){
         if (tipo.equals(TipoCliente.PF)){
@@ -24,7 +29,7 @@ public class ClienteController {
 
     private Cliente cadastrarPF(String nome){
         PessoaFisica novoCliente = new PessoaFisica(nome);
-
+        this.clientes.add(novoCliente);
         informarCadastroCliente(novoCliente);
 
         return novoCliente;
@@ -32,7 +37,7 @@ public class ClienteController {
 
     private Cliente cadastrarPJ(String nome){
         PessoaJuridica novoCliente = new PessoaJuridica(nome);
-
+        this.clientes.add(novoCliente);
         informarCadastroCliente(novoCliente);
 
         return novoCliente;
@@ -82,7 +87,7 @@ public class ClienteController {
         }
 
         System.out.println("Documento cadastrado automaticamente");
-        this.clientes.add(novoCliente);
+        //this.clientes.add(novoCliente);
         System.out.println("Cliente cadastrado com sucesso!\n");
     }
 

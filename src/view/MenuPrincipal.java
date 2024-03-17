@@ -18,6 +18,7 @@ public class MenuPrincipal {
     private AluguelView aluguelView;
     private DevolucaoView devolucaoView;
     private CadastroClienteView cadastroClienteView;
+    private AluguelService aluguelService;
 
     private EdicaoVeiculoView edicaoVeiculoView;
 
@@ -32,6 +33,7 @@ public class MenuPrincipal {
         this.aluguelView = new AluguelView(veiculoController, aluguelController, clienteController, cadastroClienteView);
         this.devolucaoView = new DevolucaoView(veiculoController, devolucaoController, aluguelController);
         this.edicaoVeiculoView = new EdicaoVeiculoView(veiculoController);
+        this.aluguelService = new AluguelService();
     }
 
     int escolha;
