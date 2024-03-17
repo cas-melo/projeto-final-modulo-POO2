@@ -26,9 +26,7 @@ public class CadastroVeiculoView {
 
         TipoVeiculo tipo = veiculoController.solicitarTipoVeiculo();
 
-        Cliente cliente = null;
-
-        veiculoController.adicionarVeiculo(marca, modelo, tipo, cliente);
+        veiculoController.adicionarVeiculo(marca, modelo, tipo);
     }
 
 

@@ -5,8 +5,8 @@ import util.GeradorCPF;
 public class PessoaFisica extends Cliente {
     private String cpf;
 
-    public PessoaFisica(String nome, Veiculo veiculoAlugado, String cpf) {
-        super(nome, veiculoAlugado);
+    public PessoaFisica(String nome) {
+        super(nome);
         this.cpf = GeradorCPF.gerarCPF();
     }
 

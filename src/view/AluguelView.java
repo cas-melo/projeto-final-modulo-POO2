@@ -1,20 +1,23 @@
 package view;
-import controller.AluguelController;
-import controller.VeiculoController;
+import controller.*;
 import models.*;
 import util.TipoCliente;
 
 import java.util.Scanner;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class AluguelView {
     private Scanner scanner;
     private VeiculoController veiculoController;
     private AluguelController aluguelController;
+    private ClienteController clienteController;
 
-    public AluguelView(VeiculoController veiculoController, AluguelController aluguelController) {
+
+    public AluguelView(VeiculoController veiculoController, AluguelController aluguelController, ClienteController clienteController) {
         this.scanner = new Scanner(System.in);
         this.veiculoController = veiculoController;
         this.aluguelController = aluguelController;
+        this.clienteController = clienteController;
     }
 
     public void exibirMenuAluguel() {
@@ -47,6 +50,7 @@ public class AluguelView {
     }
 
     private Cliente solicitarCliente() {
+
         System.out.print("Cliente já cadastrado? (S/N): ");
         String respostaClienteCadastrado = scanner.next().toUpperCase();
         scanner.nextLine();
@@ -54,16 +58,16 @@ public class AluguelView {
         Cliente cliente = null;
         String documento = "";
         if (respostaClienteCadastrado.equals("S")) {
-            System.out.println("Informe o documento do cliente: ");
+            System.out.print("Informe o documento do cliente: ");
             documento = scanner.nextLine();
 
-            cliente = new PessoaFisica("João Silva", null, documento); //TODO tirar teste
-//          cliente = buscarClientePorDocumento(documento); //TODO RENATA
+//            cliente = new PessoaFisica("João Silva"); //TODO tirar teste
+          cliente = clienteController.buscarClientePorDocumento(documento);
 
             return cliente;
         } else {
-//            cliente = cadastrarCliente(); //TODO RENATA
-//            return cliente;
+            cliente = clienteView.exibirCriarCliente; //TODO ARRUMAR
+            return cliente;
         }
         return null;
     }

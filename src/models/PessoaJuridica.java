@@ -5,13 +5,13 @@ import util.GeradorCNPJ;
 public class PessoaJuridica extends Cliente {
     private String cnpj;
 
-    public PessoaJuridica(String nome, Veiculo veiculoAlugado) {
-        super(nome, veiculoAlugado);
+    public PessoaJuridica(String nome) {
+        super(nome);
         this.cnpj = GeradorCNPJ.gerarCNPJ();
     }
 
     public String getDocumento() {
-        return "CNPJ: " + this.cnpj;
+        return this.cnpj;
     }
 
     public void setDocumento(String cnpj) {
@@ -19,6 +19,6 @@ public class PessoaJuridica extends Cliente {
     }
 
     public String getTipoDocumento(){
-        return "CPF";
+        return "CNPJ";
     }
 }

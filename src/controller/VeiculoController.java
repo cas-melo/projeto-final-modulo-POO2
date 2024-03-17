@@ -17,8 +17,8 @@ public class VeiculoController {
         this.veiculos = new ArrayList<>();
     }
 
-    public void adicionarVeiculo(String marca, String modelo, TipoVeiculo tipo, Cliente cliente) {
-        Veiculo novoVeiculo = new Veiculo(marca, modelo, tipo, cliente);
+    public void adicionarVeiculo(String marca, String modelo, TipoVeiculo tipo) {
+        Veiculo novoVeiculo = new Veiculo(marca, modelo, tipo);
 
         if (placaJaExistente(novoVeiculo.getPlaca())) {
             System.out.println("Erro: Placa já cadastrada.");
@@ -56,14 +56,6 @@ public class VeiculoController {
         return null;
     }
 
-    public List<Veiculo> listarVeiculos() {
-        return this.veiculos;
-    }
-
-    public List<Veiculo> buscarVeiculosPorNome(String nome) {
-        return veiculoBuscador.buscarPorNome(veiculos, nome);
-    }
-
     public TipoVeiculo solicitarTipoVeiculo(){
         TipoVeiculo tipo = null;
         boolean tipoValido = false;
@@ -77,11 +69,20 @@ public class VeiculoController {
                 tipo = TipoVeiculo.valueOf(tipoStr);
                 tipoValido = true;
             } catch (IllegalArgumentException e) {
-                System.out.println("Tipo de veículo inválido. Por favor, insira PEQUENO, MEDIO ou SUV.");
+                System.out.print("Tipo de veículo inválido. Por favor, insira PEQUENO, MEDIO ou SUV: ");
                 scanner.nextLine();
             }
         }
 
         return tipo;
     }
+
+    public List<Veiculo> listarVeiculos() {
+        return this.veiculos;
+    }
+
+    public List<Veiculo> buscarVeiculosPorNome(String nome) {
+        return veiculoBuscador.buscarPorNome(veiculos, nome);
+    }
+
 }

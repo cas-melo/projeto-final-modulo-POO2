@@ -1,5 +1,6 @@
 package controller;
 import models.*;
+import services.AluguelService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -34,14 +35,11 @@ public class DevolucaoController {
 
         Devolucao devolucao = new Devolucao(veiculo, aluguel.getCliente(), aluguel.getCidade(),
         aluguel.getDataInicio(), dataFim, valorTotal);
-        AtualizadorEstado atualizador = new AtualizadorEstado();
+
+        AluguelService aluguelService = new AluguelService();
+        aluguelService.devolverVeiculo(aluguel.getCliente(), veiculo);
 
         aluguelController.removerAluguel(aluguel);
-
-        atualizador.atualizarEstadoVeiculoDisponivel(veiculo);
-        atualizador.atualizarEstadoClienteDevolveu(aluguel.getCliente());
-
-
         devolucoes.add(devolucao);
         System.out.println("Devolução registrada com sucesso!");
     }

@@ -3,7 +3,7 @@ package models;
 public abstract class Cliente {
     private String nome;
 
-    public Cliente(String nome, Veiculo veiculoAlugado) {
+    public Cliente(String nome) {
         this.nome = nome;
     }
 

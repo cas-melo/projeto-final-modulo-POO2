@@ -8,6 +8,7 @@ public class MenuPrincipal {
 
     private Scanner scanner;
     private VeiculoController veiculoController;
+    private ClienteController clienteController;
     private AluguelController aluguelController;
     private DevolucaoController devolucaoController;
     private CadastroVeiculoView cadastroVeiculoView;
@@ -22,7 +23,7 @@ public class MenuPrincipal {
         this.aluguelController = new AluguelController();
         this.devolucaoController = new DevolucaoController(aluguelController);
         this.cadastroVeiculoView = new CadastroVeiculoView(veiculoController);
-        this.aluguelView = new AluguelView(veiculoController, aluguelController);
+        this.aluguelView = new AluguelView(veiculoController, aluguelController, clienteController);
         this.devolucaoView = new DevolucaoView(veiculoController, devolucaoController, aluguelController);
         this.edicaoVeiculoView = new EdicaoVeiculoView(veiculoController);
     }
@@ -159,11 +160,12 @@ public class MenuPrincipal {
 
             if (veiculo.isDisponivel()){
                 System.out.println("Disponível");
-            } else {
-                Cliente cliente = veiculo.getCliente();
-                System.out.println("Alugado | Cliente: " + cliente.getNome() +
-                        " | " + cliente.getTipoDocumento() + ": " + cliente.getDocumento());
             }
+//            else {
+//                Cliente cliente = veiculo.getCliente();
+//                System.out.println("Alugado | Cliente: " + cliente.getNome() +
+//                        " | " + cliente.getTipoDocumento() + ": " + cliente.getDocumento());
+//            } //TODO arrumar busca por cliente associado ao veículo
         }
 
         System.out.println("\nPressione ENTER para voltar ao menu principal.");
