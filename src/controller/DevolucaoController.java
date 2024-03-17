@@ -4,10 +4,11 @@ import services.AluguelService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.time.temporal.ChronoUnit.DAYS;
+
 
 public class DevolucaoController {
     private List<Devolucao> devolucoes;
@@ -23,7 +24,13 @@ public class DevolucaoController {
 
     public void registrarDevolucao(Veiculo veiculo, Aluguel aluguel, LocalDateTime dataFim){
 
-        long totalDias = DAYS.between(aluguel.getDataInicio(), dataFim);
+        long totalHoras = ChronoUnit.MINUTES.between(aluguel.getDataInicio(), dataFim);
+        if (dataFim.getMinute() >= aluguel.getDataInicio().getMinute()) {
+            totalHoras += (dataFim.getMinute() - aluguel.getDataInicio().getMinute()) / 60;
+        } else {
+            totalHoras -= (aluguel.getDataInicio().getMinute() - dataFim.getMinute()) / 60;
+        }
+        int totalDias = DiariaHelper.converterHorasEmDiarias(totalHoras, aluguel.getDataInicio(), dataFim);
         Desconto desconto = DescontoHelper.obterDesconto(aluguel.getCliente());
         Diaria diaria = new Diaria(totalDias, veiculo.getTipo(), desconto);
         double valorTotal = diaria.getValorTotal();

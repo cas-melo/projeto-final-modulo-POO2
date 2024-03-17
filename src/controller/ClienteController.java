@@ -137,7 +137,7 @@ public class ClienteController {
 
 
             if (veiculos.isEmpty()){
-                System.out.println("O cliente não possui veículos alugados.");
+                System.out.println(" O cliente não possui veículos alugados.");
                 return;
             }
 
