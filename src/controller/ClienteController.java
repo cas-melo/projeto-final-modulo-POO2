@@ -3,6 +3,8 @@ package controller;
 import models.Cliente;
 import models.PessoaFisica;
 import models.PessoaJuridica;
+import models.Veiculo;
+import services.AluguelService;
 import util.GeradorCNPJ;
 import util.GeradorCPF;
 import util.TipoCliente;
@@ -117,7 +119,31 @@ public class ClienteController {
         return null; //TODO tratar null
     }
 
-    public List<Cliente> listarClientes() {
+    public List<Cliente> listaDeClientes() {
         return this.clientes;
+    }
+
+    public void listarClientes() {
+        System.out.println("\n### LISTA CLIENTES ###");
+
+        ClienteController clienteController = new ClienteController();
+        for (Cliente cliente : clienteController.listaDeClientes()) {
+            System.out.print("\nNome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
+                    cliente.getDocumento());
+
+            List<Veiculo> veiculos = AluguelService.getVeiculosPorCliente(cliente);
+
+
+            if (veiculos.isEmpty()){
+                System.out.println("O cliente não possui veículos alugados.");
+                return;
+            }
+
+            System.out.println("\nVeículos:");
+            for (Veiculo veiculo : veiculos) {
+                System.out.println("Modelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
+                        " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());
+            }
+        }
     }
 }

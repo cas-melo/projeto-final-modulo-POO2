@@ -1,6 +1,7 @@
 package controller;
 import models.Cliente;
 import models.Veiculo;
+import services.AluguelService;
 import util.TipoVeiculo;
 
 import java.util.ArrayList;
@@ -77,8 +78,27 @@ public class VeiculoController {
         return tipo;
     }
 
-    public List<Veiculo> listarVeiculos() {
+    public List<Veiculo> listaDeVeiculos() {
         return this.veiculos;
+    }
+
+    public void listarVeiculos() {
+        System.out.println("Veículos cadastrados: ");
+        VeiculoController veiculoController = new VeiculoController();
+        for (Veiculo veiculo : veiculoController.listaDeVeiculos()) {
+            System.out.println("\nModelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
+                    " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());
+
+            Cliente cliente = AluguelService.getClientePorVeiculo(veiculo);
+            if (cliente != null){
+                System.out.println("Alugado | Cliente: " + cliente.getNome() + "| " + cliente.getTipoDocumento()
+                        + ": " + cliente.getDocumento());
+            }
+            else {
+                System.out.println("Disponível");
+            }
+        }
+
     }
 
     public List<Veiculo> buscarVeiculosPorNome(String nome) {
