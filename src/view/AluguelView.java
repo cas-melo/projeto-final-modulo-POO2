@@ -54,23 +54,16 @@ public class AluguelView {
     private Cliente solicitarCliente() {
 
         System.out.print("Cliente já cadastrado? (S/N): ");
-        String respostaClienteCadastrado = scanner.next().toUpperCase();
-        scanner.nextLine();
+        String resposta = scanner.next().toUpperCase();
+        scanner.nextLine(); // Consume newline left-over
 
-        Cliente cliente = null;
-        String documento = "";
-        if (respostaClienteCadastrado.equals("S")) {
+        if (resposta.equals("S")) {
             System.out.print("Informe o documento do cliente: ");
-            documento = scanner.nextLine();
-
-//            cliente = new PessoaFisica("João Silva"); //TODO tirar teste
-          cliente = clienteController.buscarClientePorDocumento(documento);
-
-            return cliente;
+            String documento = scanner.nextLine();
+            return clienteController.buscarClientePorDocumento(documento);
         } else {
-            cliente = cadastroClienteView.exibirCriarCliente; //TODO ARRUMAR
-            return cliente;
+            cadastroClienteView.exibirCriarCliente();
+            return clienteController.getUltimoClienteCadastrado();
         }
-        return null;
     }
 }

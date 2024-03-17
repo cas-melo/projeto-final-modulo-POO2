@@ -68,6 +68,13 @@ public class ClienteController {
         return false;
     }
 
+    public Cliente getUltimoClienteCadastrado() {
+        if (!clientes.isEmpty()) {
+            return clientes.get(clientes.size() - 1);
+        }
+        return null;
+    }
+
     private void informarCadastroCliente(Cliente novoCliente){
         if (documentoJaExistente(novoCliente.getDocumento())) {
             System.out.println("Erro: Cliente já cadastrado.");
