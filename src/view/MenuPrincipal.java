@@ -1,7 +1,10 @@
 package view;
 import controller.*;
 import models.*;
+import services.AluguelService;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MenuPrincipal {
@@ -153,6 +156,7 @@ public class MenuPrincipal {
     }
 
 
+
     // MENUS DE EXIBIÇÃO
     public void exibirVeiculos(){
         System.out.println("\n### VEÍCULOS CADASTRADOS ###");
@@ -160,14 +164,13 @@ public class MenuPrincipal {
             System.out.println("\nModelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
                     " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());
 
-            if (veiculo.isDisponivel()){
+            Cliente cliente = AluguelService.getClientePorVeiculo(veiculo);
+            if (cliente != null){
+                System.out.println("Alugado | Cliente: " + cliente.getNome());
+            }
+            else {
                 System.out.println("Disponível");
             }
-//            else {
-//                Cliente cliente = veiculo.getCliente();
-//                System.out.println("Alugado | Cliente: " + cliente.getNome() +
-//                        " | " + cliente.getTipoDocumento() + ": " + cliente.getDocumento());
-//            } //TODO arrumar busca por cliente associado ao veículo
         }
 
         System.out.println("\nPressione ENTER para voltar ao menu principal.");

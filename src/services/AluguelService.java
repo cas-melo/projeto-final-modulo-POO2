@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class AluguelService {
 
-    private Map<Cliente, List<Veiculo>> alugueis;
+    private static Map<Cliente, List<Veiculo>> alugueis;
 
     public AluguelService() {
         this.alugueis = new HashMap<>();
@@ -33,5 +33,14 @@ public class AluguelService {
             veiculo.setDisponivel(true);
             alugueis.get(cliente).remove(veiculo);
         }
+    }
+
+    public static Cliente getClientePorVeiculo(Veiculo veiculo) {
+        for (Map.Entry<Cliente, List<Veiculo>> entry : alugueis.entrySet()) {
+            if (entry.getValue().contains(veiculo)) {
+                return entry.getKey();
+            }
+        }
+        return null; //null se o veiculo não estiver alugado.
     }
 }
