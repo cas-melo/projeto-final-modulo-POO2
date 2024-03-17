@@ -119,6 +119,8 @@ public class ClienteController {
         return null; //TODO tratar null
     }
 
+
+    // TODO remover esse metodo listaDeClientes ( obsoleto )
     public List<Cliente> listaDeClientes() {
         return this.clientes;
     }
@@ -126,8 +128,8 @@ public class ClienteController {
     public void listarClientes() {
         System.out.println("\n### LISTA CLIENTES ###");
 
-        ClienteController clienteController = new ClienteController();
-        for (Cliente cliente : clienteController.listaDeClientes()) {
+
+        for (Cliente cliente : clientes) {
             System.out.print("\nNome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
                     cliente.getDocumento());
 

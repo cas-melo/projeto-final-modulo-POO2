@@ -78,14 +78,12 @@ public class VeiculoController {
         return tipo;
     }
 
-    public List<Veiculo> listaDeVeiculos() {
-        return this.veiculos;
-    }
+
 
     public void listarVeiculos() {
         System.out.println("Veículos cadastrados: ");
-        VeiculoController veiculoController = new VeiculoController();
-        for (Veiculo veiculo : veiculoController.listaDeVeiculos()) {
+
+        for (Veiculo veiculo : veiculos) {
             System.out.println("\nModelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
                     " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());
 
