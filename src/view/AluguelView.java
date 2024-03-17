@@ -25,7 +25,10 @@ public class AluguelView {
     public void exibirMenuAluguel() {
         System.out.println("\n### MENU DE ALUGUEL ###");
 
+
         try {
+            veiculoController.listarVeiculos();
+
             System.out.print("Veículo desejado (placa): ");
             String placaDesejada = scanner.nextLine();
             Veiculo veiculoDesejado = veiculoController.buscarVeiculoPorPlaca(placaDesejada);
