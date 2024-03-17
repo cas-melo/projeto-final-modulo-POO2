@@ -3,13 +3,13 @@ package models;
 import util.TipoVeiculo;
 
 public class Diaria {
-   private  long totalDias;
+   private  int totalDias;
 
    private  TipoVeiculo tipoVeiculo;
 
    private Desconto desconto;
 
-   public Diaria(long totalDias, TipoVeiculo tipoVeiculo, Desconto desconto) {
+   public Diaria(int totalDias, TipoVeiculo tipoVeiculo, Desconto desconto) {
        this.totalDias = totalDias;
        this.tipoVeiculo = tipoVeiculo;
        this.desconto = desconto;
