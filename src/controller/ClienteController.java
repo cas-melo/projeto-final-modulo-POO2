@@ -3,6 +3,8 @@ package controller;
 import models.Cliente;
 import models.PessoaFisica;
 import models.PessoaJuridica;
+import util.GeradorCNPJ;
+import util.GeradorCPF;
 import util.TipoCliente;
 
 import java.util.ArrayList;
@@ -60,6 +62,24 @@ public class ClienteController {
         }
 
         return tipo;
+    }
+
+    public void alterarCliente(String documento, String nome, TipoCliente tipo) {
+        Cliente clienteExistente = buscarClientePorDocumento(documento);
+
+        Cliente novoCliente;
+        if (clienteExistente instanceof PessoaFisica) {
+            PessoaFisica pf = (PessoaFisica) clienteExistente;
+            novoCliente = new PessoaFisica(nome);
+            pf.setDocumento(GeradorCPF.gerarCPF());
+        } else {
+            PessoaJuridica pj = (PessoaJuridica) clienteExistente;
+            novoCliente = new PessoaJuridica(nome);
+            pj.setDocumento(GeradorCNPJ.gerarCNPJ());
+        }
+
+        clientes.remove(clienteExistente);
+        clientes.add(novoCliente);
     }
 
     private boolean documentoNaoExistente(String documento) {

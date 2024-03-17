@@ -24,6 +24,7 @@ public class MenuPrincipal {
     private BuscarView buscarView;
 
     private EdicaoVeiculoView edicaoVeiculoView;
+    private EdicaoClienteView edicaoClienteView;
 
     public MenuPrincipal() {
         this.scanner = new Scanner(System.in);
@@ -36,6 +37,7 @@ public class MenuPrincipal {
         this.aluguelView = new AluguelView(veiculoController, aluguelController, clienteController, cadastroClienteView);
         this.devolucaoView = new DevolucaoView(veiculoController, devolucaoController, aluguelController);
         this.edicaoVeiculoView = new EdicaoVeiculoView(veiculoController);
+        this.edicaoClienteView = new EdicaoClienteView(clienteController);
         this.aluguelService = new AluguelService();
         this.buscarView = new BuscarView(veiculoController);
     }
@@ -124,7 +126,7 @@ public class MenuPrincipal {
                 cadastroClienteView.exibirCriarCliente();
                 break;
             case 3:
-                // alterarCliente
+                edicaoClienteView.exibirEdicaoCliente();
                 break;
             case 4:
                 return;
@@ -195,7 +197,18 @@ public class MenuPrincipal {
         for (Cliente cliente : clienteController.listarClientes()) {
             System.out.print("\nNome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
                     cliente.getDocumento());
-            //TODO logica p/ exibir veículos associados a esse cliente getVeiculosPorCliente
+
+            List<Veiculo> veiculos = AluguelService.getVeiculosPorCliente(cliente);
+            if (veiculos.isEmpty()){
+                System.out.println("O cliente não possui veículos alugados.");
+                return;
+            }
+
+            System.out.println("\nVeículos:");
+            for (Veiculo veiculo : veiculos) {
+                System.out.println("Modelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
+                        " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());
+            }
         }
         System.out.println("\nPressione ENTER para voltar ao menu principal.");
         scanner.nextLine();

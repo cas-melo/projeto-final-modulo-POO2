@@ -43,4 +43,16 @@ public class AluguelService {
         }
         return null; //null se o veiculo não estiver alugado.
     }
+
+    public static List<Veiculo> getVeiculosPorCliente(Cliente cliente) {
+        List<Veiculo> veiculosDoCliente = new ArrayList<>();
+
+        for (Map.Entry<Cliente, List<Veiculo>> entry : alugueis.entrySet()) {
+            if (entry.getKey().equals(cliente)) {
+                veiculosDoCliente.addAll(entry.getValue());
+                return veiculosDoCliente;
+            }
+        }
+        return null; //null se o cliente não tiver nenhum veículo alugado.
+    }
 }
