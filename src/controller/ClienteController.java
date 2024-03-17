@@ -131,7 +131,7 @@ public class ClienteController {
 
         for (Cliente cliente : clientes) {
             System.out.print("\nNome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
-                    cliente.getDocumento());
+                    cliente.getDocumento() + " | ");
 
             List<Veiculo> veiculos = AluguelService.getVeiculosPorCliente(cliente);
 
