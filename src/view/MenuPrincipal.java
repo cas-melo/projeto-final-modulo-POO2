@@ -24,9 +24,11 @@ public class MenuPrincipal {
     public MenuPrincipal() {
         this.scanner = new Scanner(System.in);
         this.veiculoController = new VeiculoController();
+        this.clienteController = new ClienteController();
         this.aluguelController = new AluguelController();
         this.devolucaoController = new DevolucaoController(aluguelController);
         this.cadastroVeiculoView = new CadastroVeiculoView(veiculoController);
+        this.cadastroClienteView = new CadastroClienteView(clienteController);
         this.aluguelView = new AluguelView(veiculoController, aluguelController, clienteController, cadastroClienteView);
         this.devolucaoView = new DevolucaoView(veiculoController, devolucaoController, aluguelController);
         this.edicaoVeiculoView = new EdicaoVeiculoView(veiculoController);
@@ -112,7 +114,7 @@ public class MenuPrincipal {
                 exibirClientes();
                 break;
             case 2:
-                // cadastrarCliente
+                cadastroClienteView.exibirCriarCliente();
                 break;
             case 3:
                 // alterarCliente

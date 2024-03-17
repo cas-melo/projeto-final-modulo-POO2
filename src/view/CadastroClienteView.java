@@ -1,7 +1,6 @@
 package view;
 
 import controller.ClienteController;
-import models.Cliente;
 import util.TipoCliente;
 
 import java.util.Scanner;
