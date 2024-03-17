@@ -53,6 +53,6 @@ public class AluguelService {
                 return veiculosDoCliente;
             }
         }
-        return null; //null se o cliente não tiver nenhum veículo alugado.
+        return veiculosDoCliente;
     }
 }
