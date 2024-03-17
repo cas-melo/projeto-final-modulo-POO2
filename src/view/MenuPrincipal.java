@@ -10,21 +10,19 @@ import java.util.Scanner;
 public class MenuPrincipal {
 
     ImprimirBuscaController impressora = new ImprimirBuscaController();
-
     private Scanner scanner;
-    private VeiculoController veiculoController;
-    private ClienteController clienteController;
-    private AluguelController aluguelController;
-    private DevolucaoController devolucaoController;
-    private CadastroVeiculoView cadastroVeiculoView;
-    private AluguelView aluguelView;
-    private DevolucaoView devolucaoView;
-    private CadastroClienteView cadastroClienteView;
-    private AluguelService aluguelService;
-    private BuscarView buscarView;
-
-    private EdicaoVeiculoView edicaoVeiculoView;
-    private EdicaoClienteView edicaoClienteView;
+    private final VeiculoController veiculoController;
+    private final ClienteController clienteController;
+    private final AluguelController aluguelController;
+    private final DevolucaoController devolucaoController;
+    private final CadastroVeiculoView cadastroVeiculoView;
+    private final AluguelView aluguelView;
+    private final DevolucaoView devolucaoView;
+    private final CadastroClienteView cadastroClienteView;
+    private final AluguelService aluguelService;
+    private final BuscarView buscarView;
+    private final EdicaoVeiculoView edicaoVeiculoView;
+    private final EdicaoClienteView edicaoClienteView;
 
     public MenuPrincipal() {
         this.scanner = new Scanner(System.in);
@@ -36,10 +34,10 @@ public class MenuPrincipal {
         this.cadastroClienteView = new CadastroClienteView(clienteController);
         this.aluguelView = new AluguelView(veiculoController, aluguelController, clienteController, cadastroClienteView);
         this.devolucaoView = new DevolucaoView(veiculoController, devolucaoController, aluguelController);
-        this.edicaoVeiculoView = new EdicaoVeiculoView(veiculoController);
-        this.edicaoClienteView = new EdicaoClienteView(clienteController);
         this.aluguelService = new AluguelService();
         this.buscarView = new BuscarView(veiculoController);
+        this.edicaoVeiculoView = new EdicaoVeiculoView(veiculoController);
+        this.edicaoClienteView = new EdicaoClienteView(clienteController);
     }
 
     int escolha;
@@ -189,22 +187,12 @@ public class MenuPrincipal {
     }
 
     public void exibirAlugueisAtivos(){
-        System.out.println("\n### LISTA ALUGUÉIS ATIVOS ###");
+        aluguelController.listarAlugueis();
 
-        for (Aluguel aluguel : aluguelController.listarAlugueis()) {
-            String dataInicioFormat = devolucaoController.formatarLocalDateTime(aluguel.getDataInicio());
-
-            System.out.println("\nModelo: " + aluguel.getVeiculo().getMarca() + " " + aluguel.getVeiculo().getModelo() +
-                    " | Placa: " + aluguel.getVeiculo().getPlaca() + " | Tipo: " + aluguel.getVeiculo().getTipo());
-            System.out.println("Cliente: " + aluguel.getCliente().getNome() + " | " +
-                    aluguel.getCliente().getTipoDocumento() + ": " + aluguel.getCliente().getDocumento());
-            System.out.println("Local: " + aluguel.getCidade() + " | Data de início: " + dataInicioFormat);
-
-            System.out.println("\nPressione ENTER para voltar ao menu principal.");
-            scanner.nextLine();
-            scanner.nextLine();
-            exibirMenu();
-        }
+        System.out.println("\nPressione ENTER para voltar ao menu principal.");
+        scanner.nextLine();
+        scanner.nextLine();
+        exibirMenu();
     }
 
     public void exibirDevolucoes(){

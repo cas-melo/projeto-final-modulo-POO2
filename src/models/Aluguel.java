@@ -7,7 +7,6 @@ public class Aluguel {
     private Veiculo veiculo;
     private Cliente cliente;
     private String cidade;
-
     private LocalDateTime dataInicio;
 
 

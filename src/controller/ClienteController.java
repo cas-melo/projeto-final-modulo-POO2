@@ -1,9 +1,6 @@
 package controller;
 
-import models.Cliente;
-import models.PessoaFisica;
-import models.PessoaJuridica;
-import models.Veiculo;
+import models.*;
 import services.AluguelService;
 import util.GeradorCNPJ;
 import util.GeradorCPF;
@@ -58,7 +55,7 @@ public class ClienteController {
                 tipo = TipoCliente.valueOf(tipoStr);
                 tipoValido = true;
             } catch (IllegalArgumentException e) {
-                System.out.println("Tipo de cliente inválido. Por favor, insira PF ou PJ: ");
+                System.out.println("Tipo de cliente inválido.");
                 scanner.nextLine();
             }
         }
@@ -68,20 +65,30 @@ public class ClienteController {
 
     public void alterarCliente(String documento, String nome, TipoCliente tipo) {
         Cliente clienteExistente = buscarClientePorDocumento(documento);
+        Cliente novoCliente = null;
+        boolean tipoAlterado = false;
 
-        Cliente novoCliente;
-        if (clienteExistente instanceof PessoaFisica) {
-            PessoaFisica pf = (PessoaFisica) clienteExistente;
-            novoCliente = new PessoaFisica(nome);
-            pf.setDocumento(GeradorCPF.gerarCPF());
-        } else {
-            PessoaJuridica pj = (PessoaJuridica) clienteExistente;
-            novoCliente = new PessoaJuridica(nome);
-            pj.setDocumento(GeradorCNPJ.gerarCNPJ());
+        if (!clienteExistente.getNome().equals(nome)){
+            clienteExistente.setNome(nome);
         }
 
-        clientes.remove(clienteExistente);
-        clientes.add(novoCliente);
+        if ((clienteExistente instanceof PessoaFisica) && (tipo.equals(TipoCliente.PJ))) {
+            tipoAlterado = true;
+            novoCliente = new PessoaJuridica(nome);
+            novoCliente.setDocumento(GeradorCNPJ.gerarCNPJ());
+        } else if ((clienteExistente instanceof PessoaJuridica) && (tipo.equals(TipoCliente.PF))){
+            tipoAlterado = true;
+            novoCliente = new PessoaFisica(nome);
+            novoCliente.setDocumento(GeradorCPF.gerarCPF());
+        }
+
+        if (tipoAlterado) {
+            clientes.remove(clienteExistente);
+            clientes.add(novoCliente);
+
+            AluguelService aluguelService = new AluguelService();
+            aluguelService.alterarClienteAluguel(clienteExistente, novoCliente);
+        }
     }
 
     private boolean documentoNaoExistente(String documento) {
@@ -103,7 +110,7 @@ public class ClienteController {
     private void informarCadastroCliente(Cliente novoCliente){
         if (!documentoNaoExistente(novoCliente.getDocumento())) {
             System.out.println("Erro: Cliente já cadastrado.");
-            //TODO TRATAR ERRO
+            return;
         }
 
         System.out.println("Documento cadastrado automaticamente");
@@ -117,12 +124,6 @@ public class ClienteController {
             }
         }
         return null; //TODO tratar null
-    }
-
-
-    // TODO remover esse metodo listaDeClientes ( obsoleto )
-    public List<Cliente> listaDeClientes() {
-        return this.clientes;
     }
 
     public void listarClientes() {
@@ -141,7 +142,7 @@ public class ClienteController {
                 return;
             }
 
-            System.out.println("\nVeículos:");
+            System.out.println("Veículos:");
             for (Veiculo veiculo : veiculos) {
                 System.out.println("Modelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
                         " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());

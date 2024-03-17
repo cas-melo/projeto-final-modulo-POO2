@@ -35,13 +35,18 @@ public class AluguelService {
         }
     }
 
+    // TODO ARRUMAR
+    public void alterarClienteAluguel(Cliente clienteAntigo, Cliente clienteNovo) {
+
+    }
+
     public static Cliente getClientePorVeiculo(Veiculo veiculo) {
         for (Map.Entry<Cliente, List<Veiculo>> entry : alugueis.entrySet()) {
             if (entry.getValue().contains(veiculo)) {
                 return entry.getKey();
             }
         }
-        return null; //null se o veiculo não estiver alugado.
+        return null;
     }
 
     public static List<Veiculo> getVeiculosPorCliente(Cliente cliente) {

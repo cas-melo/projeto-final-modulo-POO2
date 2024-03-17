@@ -16,6 +16,7 @@ public abstract class Cliente {
     }
 
     public abstract String getDocumento();
+    public abstract void setDocumento(String documento);
 
     public abstract String getTipoDocumento();
 }

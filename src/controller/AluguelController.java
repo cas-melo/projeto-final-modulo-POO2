@@ -3,6 +3,7 @@ import models.*;
 import services.AluguelService;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,22 @@ public class AluguelController {
         return null;
     }
 
-    public List<Aluguel> listarAlugueis() {
-        return this.alugueis;
+    public void listarAlugueis() {
+        System.out.println("\n### LISTA ALUGUÉIS ATIVOS ###");
+
+        for (Aluguel aluguel : alugueis) {
+            String dataInicioFormat = formatarLocalDateTime(aluguel.getDataInicio());
+
+            System.out.println("\nModelo: " + aluguel.getVeiculo().getMarca() + " " + aluguel.getVeiculo().getModelo() +
+                    " | Placa: " + aluguel.getVeiculo().getPlaca() + " | Tipo: " + aluguel.getVeiculo().getTipo());
+            System.out.println("Cliente: " + aluguel.getCliente().getNome() + " | " +
+                    aluguel.getCliente().getTipoDocumento() + ": " + aluguel.getCliente().getDocumento());
+            System.out.println("Local: " + aluguel.getCidade() + " | Data de início: " + dataInicioFormat);
+        }
+    }
+
+    public String formatarLocalDateTime(LocalDateTime dataHora) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return dataHora.format(formatter);
     }
 }

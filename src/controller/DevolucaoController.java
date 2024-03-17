@@ -19,9 +19,6 @@ public class DevolucaoController {
         this.aluguelController = aluguelController;
     }
 
-
-
-
     public void registrarDevolucao(Veiculo veiculo, Aluguel aluguel, LocalDateTime dataFim){
 
         long totalHoras = ChronoUnit.MINUTES.between(aluguel.getDataInicio(), dataFim);
