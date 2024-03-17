@@ -14,6 +14,7 @@ public class MenuPrincipal {
     private CadastroVeiculoView cadastroVeiculoView;
     private AluguelView aluguelView;
     private DevolucaoView devolucaoView;
+    private CadastroClienteView cadastroClienteView;
 
     private EdicaoVeiculoView edicaoVeiculoView;
 
@@ -23,7 +24,7 @@ public class MenuPrincipal {
         this.aluguelController = new AluguelController();
         this.devolucaoController = new DevolucaoController(aluguelController);
         this.cadastroVeiculoView = new CadastroVeiculoView(veiculoController);
-        this.aluguelView = new AluguelView(veiculoController, aluguelController, clienteController);
+        this.aluguelView = new AluguelView(veiculoController, aluguelController, clienteController, cadastroClienteView);
         this.devolucaoView = new DevolucaoView(veiculoController, devolucaoController, aluguelController);
         this.edicaoVeiculoView = new EdicaoVeiculoView(veiculoController);
     }
@@ -78,7 +79,7 @@ public class MenuPrincipal {
                 exibirVeiculos();
                 break;
             case 2:
-                cadastroVeiculoView.exibirFormularioCadastro();
+                cadastroVeiculoView.exibirCriarVeiculo();
                 break;
             case 3:
                 edicaoVeiculoView.exibirEdicaoVeiculo();
@@ -105,7 +106,8 @@ public class MenuPrincipal {
 
         switch (escolha) {
             case 1:
-                // exibirClientes
+                exibirClientes();
+                break;
             case 2:
                 // cadastrarCliente
                 break;
@@ -174,7 +176,20 @@ public class MenuPrincipal {
         exibirMenu();
     }
 
-    //public void exibirClientes(){}
+    public void exibirClientes(){
+        System.out.println("\n### LISTA CLIENTES ###");
+
+        for (Cliente cliente : clienteController.listarClientes()) {
+            System.out.println("\nNome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
+                    cliente.getDocumento());
+            //TODO logica p/ exibir veículos associados a esse cliente
+
+            System.out.println("\nPressione ENTER para voltar ao menu principal.");
+            scanner.nextLine();
+            scanner.nextLine();
+            exibirMenu();
+        }
+    }
 
     public void exibirAlugueisAtivos(){
         System.out.println("\n### LISTA ALUGUÉIS ATIVOS ###");

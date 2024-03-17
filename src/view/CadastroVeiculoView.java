@@ -1,9 +1,7 @@
 package view;
 
 import controller.VeiculoController;
-import models.Cliente;
 import util.TipoVeiculo;
-import models.Veiculo;
 import java.util.Scanner;
 
 public class CadastroVeiculoView {
@@ -15,7 +13,7 @@ public class CadastroVeiculoView {
         this.veiculoController = veiculoController;
     }
 
-    public void exibirFormularioCadastro() {
+    public void exibirCriarVeiculo() {
         System.out.println("\n### Cadastro de Veículo ###");
 
         System.out.print("Marca do veículo: ");

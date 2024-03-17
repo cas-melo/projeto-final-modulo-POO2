@@ -11,13 +11,15 @@ public class AluguelView {
     private VeiculoController veiculoController;
     private AluguelController aluguelController;
     private ClienteController clienteController;
+    private CadastroClienteView cadastroClienteView;
 
 
-    public AluguelView(VeiculoController veiculoController, AluguelController aluguelController, ClienteController clienteController) {
+    public AluguelView(VeiculoController veiculoController, AluguelController aluguelController, ClienteController clienteController, CadastroClienteView cadastroClienteView) {
         this.scanner = new Scanner(System.in);
         this.veiculoController = veiculoController;
         this.aluguelController = aluguelController;
         this.clienteController = clienteController;
+        this.cadastroClienteView = cadastroClienteView;
     }
 
     public void exibirMenuAluguel() {
@@ -66,7 +68,7 @@ public class AluguelView {
 
             return cliente;
         } else {
-            cliente = clienteView.exibirCriarCliente; //TODO ARRUMAR
+            cliente = cadastroClienteView.exibirCriarCliente; //TODO ARRUMAR
             return cliente;
         }
         return null;
