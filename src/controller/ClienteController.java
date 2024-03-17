@@ -85,7 +85,6 @@ public class ClienteController {
         }
 
         System.out.println("Documento cadastrado automaticamente");
-        //this.clientes.add(novoCliente);
         System.out.println("Cliente cadastrado com sucesso!\n");
     }
 

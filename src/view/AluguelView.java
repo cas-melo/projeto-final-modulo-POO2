@@ -55,7 +55,7 @@ public class AluguelView {
 
         System.out.print("Cliente já cadastrado? (S/N): ");
         String resposta = scanner.next().toUpperCase();
-        scanner.nextLine(); // Consume newline left-over
+        scanner.nextLine();
 
         if (resposta.equals("S")) {
             System.out.print("Informe o documento do cliente: ");

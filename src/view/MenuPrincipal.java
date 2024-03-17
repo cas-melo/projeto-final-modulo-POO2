@@ -97,8 +97,6 @@ public class MenuPrincipal {
                 break;
             case 4:
                 List<Veiculo> resultado = buscarView.exibirMenuBusca();
-
-
                 impressora.imprimirBusca(resultado);
                 break;
             case 5:
@@ -177,7 +175,8 @@ public class MenuPrincipal {
 
             Cliente cliente = AluguelService.getClientePorVeiculo(veiculo);
             if (cliente != null){
-                System.out.println("Alugado | Cliente: " + cliente.getNome());
+                System.out.println("Alugado | Cliente: " + cliente.getNome() + "| " + cliente.getTipoDocumento()
+                + ": " + cliente.getDocumento());
             }
             else {
                 System.out.println("Disponível");
@@ -196,7 +195,7 @@ public class MenuPrincipal {
         for (Cliente cliente : clienteController.listarClientes()) {
             System.out.print("\nNome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
                     cliente.getDocumento());
-            //TODO logica p/ exibir veículos associados a esse cliente
+            //TODO logica p/ exibir veículos associados a esse cliente getVeiculosPorCliente
         }
         System.out.println("\nPressione ENTER para voltar ao menu principal.");
         scanner.nextLine();

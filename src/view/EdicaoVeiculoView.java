@@ -30,7 +30,7 @@ public class EdicaoVeiculoView {
 
         try {
 
-            System.out.println("Digite a placa do veículo que deseja alterar: ");
+            System.out.print("Digite a placa do veículo que deseja alterar: ");
             String placa = scanner.nextLine();
 
             Veiculo veiculo = veiculoController.buscarVeiculoPorPlaca(placa);
@@ -45,21 +45,21 @@ public class EdicaoVeiculoView {
             }
 
 
-            System.out.println("Digite o novo nome de marca: ");
+            System.out.print("Digite o novo nome de marca: ");
             String marca = scanner.nextLine();
             if (marca.isEmpty() || marca.isBlank()) {
                 throw new IllegalArgumentException("Marca inválida!");
             }
 
 
-            System.out.println("Digite o novo nome de modelo: ");
+            System.out.print("Digite o novo nome de modelo: ");
             String modelo = scanner.nextLine();
             if (modelo.isEmpty() || modelo.isBlank()) {
                 throw new IllegalArgumentException("Modelo inválido!");
             }
 
 
-            System.out.println("Digite o novo tipo de veículo: ");
+            System.out.print("Digite o novo tipo de veículo: ");
             TipoVeiculo tipo = veiculoController.solicitarTipoVeiculo();
 
 
