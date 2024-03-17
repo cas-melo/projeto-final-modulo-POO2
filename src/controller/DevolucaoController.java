@@ -25,11 +25,6 @@ public class DevolucaoController {
     public void registrarDevolucao(Veiculo veiculo, Aluguel aluguel, LocalDateTime dataFim){
 
         long totalHoras = ChronoUnit.MINUTES.between(aluguel.getDataInicio(), dataFim);
-        if (dataFim.getMinute() >= aluguel.getDataInicio().getMinute()) {
-            totalHoras += (dataFim.getMinute() - aluguel.getDataInicio().getMinute()) / 60;
-        } else {
-            totalHoras -= (aluguel.getDataInicio().getMinute() - dataFim.getMinute()) / 60;
-        }
         int totalDias = DiariaHelper.converterHorasEmDiarias(totalHoras, aluguel.getDataInicio(), dataFim);
         Desconto desconto = DescontoHelper.obterDesconto(aluguel.getCliente());
         Diaria diaria = new Diaria(totalDias, veiculo.getTipo(), desconto);
