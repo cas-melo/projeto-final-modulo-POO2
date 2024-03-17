@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 public class MenuPrincipal {
 
+    ImprimirBuscaController impressora = new ImprimirBuscaController();
+
     private Scanner scanner;
     private VeiculoController veiculoController;
     private ClienteController clienteController;
@@ -19,6 +21,7 @@ public class MenuPrincipal {
     private DevolucaoView devolucaoView;
     private CadastroClienteView cadastroClienteView;
     private AluguelService aluguelService;
+    private BuscarView buscarView;
 
     private EdicaoVeiculoView edicaoVeiculoView;
 
@@ -34,6 +37,7 @@ public class MenuPrincipal {
         this.devolucaoView = new DevolucaoView(veiculoController, devolucaoController, aluguelController);
         this.edicaoVeiculoView = new EdicaoVeiculoView(veiculoController);
         this.aluguelService = new AluguelService();
+        this.buscarView = new BuscarView(veiculoController);
     }
 
     int escolha;
@@ -92,7 +96,10 @@ public class MenuPrincipal {
                 edicaoVeiculoView.exibirEdicaoVeiculo();
                 break;
             case 4:
-                // buscarVeiculoPorNome
+                List<Veiculo> resultado = buscarView.exibirMenuBusca();
+
+
+                impressora.imprimirBusca(resultado);
                 break;
             case 5:
                 return;
@@ -187,15 +194,14 @@ public class MenuPrincipal {
         System.out.println("\n### LISTA CLIENTES ###");
 
         for (Cliente cliente : clienteController.listarClientes()) {
-            System.out.println("\nNome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
+            System.out.print("\nNome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
                     cliente.getDocumento());
             //TODO logica p/ exibir veículos associados a esse cliente
-
-            System.out.println("\nPressione ENTER para voltar ao menu principal.");
-            scanner.nextLine();
-            scanner.nextLine();
-            exibirMenu();
         }
+        System.out.println("\nPressione ENTER para voltar ao menu principal.");
+        scanner.nextLine();
+        scanner.nextLine();
+        exibirMenu();
     }
 
     public void exibirAlugueisAtivos(){

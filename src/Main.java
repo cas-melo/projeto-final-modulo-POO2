@@ -11,9 +11,7 @@ public class Main {
         MenuPrincipal menu = new MenuPrincipal();
         menu.exibirMenu();
 
-//        VeiculoController veiculoController = new VeiculoController();
-//        AluguelController aluguelController = new AluguelController();
-////        ImprimirBuscaController impressora = new ImprimirBuscaController();
+
 //
 //                                       //TESTE CADASTRO VEÍCULO //
 //        Veiculo fusca = new Veiculo("Volkswagen","Fusca", TipoVeiculo.PEQUENO, null);
@@ -53,13 +51,21 @@ public class Main {
 //
 //
 //        /*                             // TESTE BUSCA //
-//        // Buscando veículos por nome
-//        List<Veiculo> resultadoBusca = veiculoController.buscarVeiculosPorNome("r");
-//        impressora.imprimirBusca(resultadoBusca);
+       // Buscando veículos por nome
+
+
+
+//        VeiculoController veiculoController = new VeiculoController();
+//       AluguelController aluguelController = new AluguelController();
+//       ImprimirBuscaController impressora = new ImprimirBuscaController();
 //
-//        // Paginando os veículos
+//       // busca por nome
+//       List<Veiculo> resultadoBusca = veiculoController.buscarVeiculosPorNome("r");
+//       impressora.imprimirBusca(resultadoBusca);
+//
+//       // Paginando os veículos
 //        List<Veiculo> veiculosPaginados = Paginacao.paginar(resultadoBusca, 3, 1);
-//        impressora.imprimirBusca(veiculosPaginados); */
+//        impressora.imprimirBusca(veiculosPaginados);
     }
 }
 

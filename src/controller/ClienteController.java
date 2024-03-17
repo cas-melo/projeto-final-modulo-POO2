@@ -3,9 +3,7 @@ package controller;
 import models.Cliente;
 import models.PessoaFisica;
 import models.PessoaJuridica;
-import models.Veiculo;
 import util.TipoCliente;
-import util.TipoVeiculo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +62,7 @@ public class ClienteController {
         return tipo;
     }
 
-    private boolean documentoJaExistente(String documento) {
+    private boolean documentoNaoExistente(String documento) {
         for (Cliente cliente : clientes) {
             if (cliente.getDocumento().equals(documento)) {
                 return true;
@@ -81,7 +79,7 @@ public class ClienteController {
     }
 
     private void informarCadastroCliente(Cliente novoCliente){
-        if (documentoJaExistente(novoCliente.getDocumento())) {
+        if (!documentoNaoExistente(novoCliente.getDocumento())) {
             System.out.println("Erro: Cliente já cadastrado.");
             //TODO TRATAR ERRO
         }
