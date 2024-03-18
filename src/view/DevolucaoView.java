@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DevolucaoView {
     private Scanner scanner;
@@ -22,12 +24,12 @@ public class DevolucaoView {
         this.aluguelController = aluguelController;
     }
 
-    public void exibirMenuDevolucao(){
+    public void exibirMenuDevolucao() {
         System.out.println("\n### MENU DE DEVOLUÇÃO ###");
 
         aluguelController.listarAlugueis();
 
-        try{
+        try {
             System.out.print("Veículo a ser devolvido (placa): ");
             String placaDesejada = scanner.nextLine();
             Veiculo veiculoDevolvido = veiculoController.buscarVeiculoPorPlaca(placaDesejada);
@@ -38,19 +40,34 @@ public class DevolucaoView {
 
             Aluguel aluguel = aluguelController.buscarAluguelPorVeiculo(veiculoDevolvido);
 
-            System.out.print("Informe a data de devolução (dd/mm/aaaa): ");
-            StringBuilder dataDevolucao = new StringBuilder(scanner.nextLine());
-            System.out.print("Informe o horário de devolução (hh:mm): ");
-            dataDevolucao.append(" " + scanner.nextLine());
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-            LocalDateTime dataFim = LocalDateTime.parse(dataDevolucao, formatter);
-
+            String dataDevolucao = obterDataHoraDevolucao("Informe a data e hora de devolução (dd/mm/aaaa hh:mm): ");
+            LocalDateTime dataFim = LocalDateTime.parse(dataDevolucao, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 
             devolucaoController.registrarDevolucao(veiculoDevolvido, aluguel, dataFim);
 
         } catch (IllegalArgumentException e) {
             System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    private String obterDataHoraDevolucao(String mensagem) {
+        String dataHora;
+
+        do {
+            System.out.print(mensagem);
+            dataHora = scanner.nextLine();
+        } while (!validarDataHora(dataHora));
+
+        return dataHora;
+    }
+
+    private boolean validarDataHora(String dataHora) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            LocalDateTime.parse(dataHora, formatter);
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 }
