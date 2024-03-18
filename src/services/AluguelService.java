@@ -35,9 +35,15 @@ public class AluguelService {
         }
     }
 
-    // TODO ARRUMAR
-    public void alterarClienteAluguel(Cliente clienteAntigo, Cliente clienteNovo) {
-
+    public void alterarClienteAluguel(Cliente clienteAntigo, Cliente novoCliente) {
+        for (Map.Entry<Cliente, List<Veiculo>> entry : alugueis.entrySet()) {
+            if (entry.getKey().equals(clienteAntigo)) {
+                // Atualizar o cliente associado a cada aluguel
+                List<Veiculo> veiculosAlugados = entry.getValue();
+                alugueis.remove(clienteAntigo);
+                alugueis.put(novoCliente, veiculosAlugados);
+            }
+        }
     }
 
     public static Cliente getClientePorVeiculo(Veiculo veiculo) {

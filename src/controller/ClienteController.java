@@ -13,9 +13,11 @@ import java.util.Scanner;
 public class ClienteController {
 
     private List<Cliente> clientes;
+    private AluguelService aluguelService;
 
-    public ClienteController() {
+    public ClienteController(AluguelService aluguelService) {
         this.clientes = new ArrayList<>();
+        this.aluguelService = aluguelService;
     }
 
     public void cadastrarCliente(String nome, TipoCliente tipo){
@@ -86,7 +88,6 @@ public class ClienteController {
             clientes.remove(clienteExistente);
             clientes.add(novoCliente);
 
-            AluguelService aluguelService = new AluguelService();
             aluguelService.alterarClienteAluguel(clienteExistente, novoCliente);
         }
     }

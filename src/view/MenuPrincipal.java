@@ -27,14 +27,14 @@ public class MenuPrincipal {
     public MenuPrincipal() {
         this.scanner = new Scanner(System.in);
         this.veiculoController = new VeiculoController();
-        this.clienteController = new ClienteController();
+        this.aluguelService = new AluguelService();
+        this.clienteController = new ClienteController(aluguelService);
         this.aluguelController = new AluguelController();
         this.devolucaoController = new DevolucaoController(aluguelController);
         this.cadastroVeiculoView = new CadastroVeiculoView(veiculoController);
         this.cadastroClienteView = new CadastroClienteView(clienteController);
         this.aluguelView = new AluguelView(veiculoController, aluguelController, clienteController, cadastroClienteView);
         this.devolucaoView = new DevolucaoView(veiculoController, devolucaoController, aluguelController);
-        this.aluguelService = new AluguelService();
         this.buscarView = new BuscarView(veiculoController);
         this.edicaoVeiculoView = new EdicaoVeiculoView(veiculoController);
         this.edicaoClienteView = new EdicaoClienteView(clienteController);
