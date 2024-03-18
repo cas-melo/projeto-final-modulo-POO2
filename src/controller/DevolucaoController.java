@@ -22,7 +22,7 @@ public class DevolucaoController {
     public void registrarDevolucao(Veiculo veiculo, Aluguel aluguel, LocalDateTime dataFim){
 
         long totalHoras = ChronoUnit.MINUTES.between(aluguel.getDataInicio(), dataFim);
-        int totalDias = DiariaHelper.converterHorasEmDiarias(totalHoras, aluguel.getDataInicio(), dataFim);
+        int totalDias = DiariaHelper.converterMinutosEmDiarias(totalHoras);
         Desconto desconto = DescontoHelper.obterDesconto(aluguel.getCliente());
         Diaria diaria = new Diaria(totalDias, veiculo.getTipo(), desconto);
         double valorTotal = diaria.getValorTotal();
