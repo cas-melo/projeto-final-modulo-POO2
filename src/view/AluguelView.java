@@ -62,7 +62,7 @@ public class AluguelView {
 
         if (resposta.equals("S")) {
             clienteController.listarClientes();
-            System.out.print("Informe o documento do cliente: ");
+            System.out.print("\nInforme o documento do cliente: ");
             String documento = scanner.nextLine();
 
             return clienteController.buscarClientePorDocumento(documento);

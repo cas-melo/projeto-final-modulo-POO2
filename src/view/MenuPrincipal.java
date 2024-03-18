@@ -30,7 +30,7 @@ public class MenuPrincipal {
         this.aluguelService = new AluguelService();
         this.clienteController = new ClienteController(aluguelService);
         this.aluguelController = new AluguelController();
-        this.devolucaoController = new DevolucaoController(aluguelController);
+        this.devolucaoController = new DevolucaoController(aluguelController, aluguelService);
         this.cadastroVeiculoView = new CadastroVeiculoView(veiculoController);
         this.cadastroClienteView = new CadastroClienteView(clienteController);
         this.aluguelView = new AluguelView(veiculoController, aluguelController, clienteController, cadastroClienteView);

@@ -33,7 +33,6 @@ public class Veiculo {
         return tipo;
     }
 
-
     public boolean isDisponivel() {
         return disponivel;
     }

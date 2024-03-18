@@ -1,6 +1,5 @@
 package services;
 
-import models.Aluguel;
 import models.Cliente;
 import models.Veiculo;
 
@@ -32,18 +31,6 @@ public class AluguelService {
         if (alugueis.containsKey(veiculo) && alugueis.get(cliente).contains(veiculo)) {
             veiculo.setDisponivel(true);
             alugueis.get(cliente).remove(veiculo);
-        }
-    }
-
-    //TODO arrumar ou retirar
-    public void alterarClienteAluguel(Cliente clienteAntigo, Cliente novoCliente) {
-        for (Map.Entry<Cliente, List<Veiculo>> entry : alugueis.entrySet()) {
-            if (entry.getKey().equals(clienteAntigo)) {
-                // Atualizar o cliente associado a cada aluguel
-                List<Veiculo> veiculosAlugados = entry.getValue();
-                alugueis.remove(clienteAntigo);
-                alugueis.put(novoCliente, veiculosAlugados);
-            }
         }
     }
 

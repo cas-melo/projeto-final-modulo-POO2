@@ -12,11 +12,13 @@ import java.util.List;
 
 public class DevolucaoController {
     private List<Devolucao> devolucoes;
-    AluguelController aluguelController;
+    private AluguelController aluguelController;
+    private AluguelService aluguelService;
 
-    public DevolucaoController(AluguelController aluguelController) {
+    public DevolucaoController(AluguelController aluguelController, AluguelService aluguelService) {
         this.devolucoes = new ArrayList<>();
         this.aluguelController = aluguelController;
+        this.aluguelService = aluguelService;
     }
 
     public void registrarDevolucao(Veiculo veiculo, Aluguel aluguel, LocalDateTime dataFim) {
@@ -35,7 +37,6 @@ public class DevolucaoController {
         Devolucao devolucao = new Devolucao(veiculo, aluguel.getCliente(), aluguel.getCidade(),
                 aluguel.getDataInicio(), dataFim, valorTotal);
 
-        AluguelService aluguelService = new AluguelService();
         aluguelService.devolverVeiculo(aluguel.getCliente(), veiculo);
 
         aluguelController.removerAluguel(aluguel);

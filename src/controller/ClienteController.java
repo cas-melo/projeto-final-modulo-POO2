@@ -93,8 +93,6 @@ public class ClienteController {
             if (tipoAlterado) {
                 clientes.remove(clienteExistente);
                 clientes.add(novoCliente);
-
-                aluguelService.alterarClienteAluguel(clienteExistente, novoCliente); //TODO arrumar ou retirar
             }
         } catch (IllegalArgumentException e) {
             System.out.println("Erro: " + e.getMessage());
@@ -146,7 +144,7 @@ public class ClienteController {
 
 
         for (Cliente cliente : clientes) {
-            System.out.print("\nNome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
+            System.out.print("Nome: " + cliente.getNome() + " | " + cliente.getTipoDocumento() + ": " +
                     cliente.getDocumento() + " | ");
 
             List<Veiculo> veiculos = AluguelService.getVeiculosPorCliente(cliente);
