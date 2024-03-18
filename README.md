@@ -6,7 +6,7 @@ Este projeto é uma aplicação de uma locadora de veículos, desenvolvida como 
 - Cadastro, alteração e busca de veículos por parte do nome.
 - Cadastro e alteração de clientes (pessoa física e jurídica).
 - Aluguel e devolução de veículos para pessoas físicas e jurídicas.
-- Paginação nas listagens de veículos e clientes.
+- Paginação nas listagens de veículos.
 
 ## Regras de Negócio
 1. Os veículos não podem ser repetidos, utilizando a placa como identificador de unicidade.
