@@ -1,61 +1,54 @@
-<h1>Projeto Final - Santander Coders 2023.2 - Módulo III - Programação Orientada a Objetos II</h1>
+# Locadora de Veículos
 
-<h3>ADA LocateCar - Locadora de veículo</h3>
+Este projeto é uma aplicação de uma locadora de veículos, desenvolvida como parte de um exercício prático para aplicar conceitos de programação orientada a objetos e arquitetura MVC.
 
-  
-Descrição do Projeto
+## Funcionalidades
+- Cadastro, alteração e busca de veículos por parte do nome.
+- Cadastro e alteração de clientes (pessoa física e jurídica).
+- Aluguel e devolução de veículos para pessoas físicas e jurídicas.
+- Paginação nas listagens de veículos e clientes.
 
-O projeto final do Módulo III - Programação Orientada a Objetos II consiste na criação de uma aplicação que gerencie o aluguel de veículos, aplicando os conceitos vistos em aula, onde cada item abaixo seja considerado:
+## Regras de Negócio
+1. Os veículos não podem ser repetidos, utilizando a placa como identificador de unicidade.
+2. Tipos de veículos considerados: PEQUENO, MÉDIO e SUV.
+3. Os aluguéis e devoluções incluem local, data e horário.
+4. Aluguéis em horas quebradas são considerados como diárias completas.
+5. Veículos alugados não estão disponíveis.
+6. Clientes não podem ser duplicados, utilizando CPF (Pessoa Física) e CNPJ (Pessoa Jurídica) como identificadores de unicidade.
+7. Regras de devolução:
+   - Cliente pessoa física com mais de 5 diárias tem direito a 5% de desconto.
+   - Cliente pessoa jurídica com mais de 3 diárias tem direito a 10% de desconto.
 
-<h3>Itens obrigatórios</h3>
+## Estrutura do Projeto
+O projeto segue a arquitetura MVC (Model-View-Controller), com a separação das camadas de modelo, visão e controle para facilitar a organização e manutenção do código.
 
-<ul><li>Cadastrar os veículos;</li>
-<li>Alterar um veículo cadastrado;</li>
-<li>Buscar um veículo por parte do nome;</li>
-<li>Cadastrar o cliente (pessoa física e jurídica)</li>
-<li>Alterar o cliente (pessoa física e jurídica)</li>
-<li>Alugar um veículo para pessoa física e jurídica;</li>
-<li>Devolver um veículo para pessoa física e jurídica;</li>
-</ul>
+## Conceitos Aplicados
+Durante o desenvolvimento deste projeto, foram aplicados os seguintes conceitos:
 
+### Interfaces
+Interfaces foram utilizadas para definir contratos entre diferentes partes do sistema, como os serviços de aluguel e clientes. Isso permite uma maior flexibilidade na implementação e facilita a substituição de componentes.
 
-<h3>Regras de negócio</h3>
-<ul>
-<li>RN1: Os veículos não podem ser repetidos; Pode utilizar a placa como identificador de unicidade;</li>
+### Generics
+Generics foram empregados em várias partes do código para aumentar a reusabilidade e a segurança de tipos. Por exemplo, as listas de veículos e clientes são parametrizadas com generics para evitar castings desnecessários.
 
-<li>RN2: Tipos de veículos que serão considerados: PEQUENO, MEDIO e SUV;</li>
+### Princípios do SOLID
+Os princípios do SOLID foram considerados durante o desenvolvimento para garantir que o código seja modular, extensível e de fácil manutenção. Por exemplo, a separação de responsabilidades entre as camadas MVC segue o princípio da responsabilidade única.
 
-<li>RN3: Os aluguéis e devoluções terão o local, data e horário;</li>
+## Dificuldades e Facilidades
 
-<li>RN4: Considere aluguel em horas quebradas como uma diária completa. Exemplo: uma devolução de um veículo alugado no dia 25 de janeiro às 15h30 será cobrado uma (1) diária até dia 26 de janeiro às 15h30, a partir desse horário já serão cobradas duas (2) diárias e assim por diante.</li>
+### Facilidades
+- A utilização da arquitetura MVC facilitou a organização do código e a separação de responsabilidades entre as diferentes partes do sistema.
+- A utilização de generics e interfaces tornou o código mais flexível e reutilizável, permitindo uma implementação mais limpa e concisa.
 
-<li>RN5: Os veículos que estiverem alugados não poderão estar disponíveis;</li>
+### Dificuldades
+- A implementação das regras de devolução com base no tempo de aluguel foi desafiadora, especialmente a lógica para calcular os descontos com base no tipo de cliente.
+- A gestão dos aluguéis e sua associação com os clientes e veículos exigiu um planejamento cuidadoso para garantir a consistência dos dados.
 
-<li>RN6: Clientes não podem estar duplicados; Considerar CPF (Pessoa Física) e CNPJ (Pessoa Jurídica) como identificadores de unicidade;</li>
+## Como Executar o Projeto
 
-<li>RN7: Regras de devolução:
-Caso o cliente pessoa física tenha ficado com o carro mais que 5 diárias terá direito a 5% de desconto.
-Caso o cliente pessoa jurídica tenha ficado com o carro mais que 3 diárias terá direito a 10% de desconto.</li>
-</ul>
+Para executar o projeto, siga estas etapas:
 
+1. Clone o repositório para o seu ambiente local.
+2. Certifique-se de ter o Java JDK instalado em seu sistema.
+3. Execute o arquivo Main.java para iniciar o sistema.
 
-Valores base da diária por tipo de veículo:
-
-| Tipo de Veículo | Valor por dia | | --------------- | ------------- | | PEQUENO | R
-100
-,
-00
-∣
-∣
-�
-�
-�
-�
-�
-∣
-�
-100,00∣∣MEDIO∣R 150,00 | | SUV | R$ 200,00 |
-
-Itens bônus - Opcionais
-Paginar as listagem envolvidas;
-Gravar os dados em arquivos;
