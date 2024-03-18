@@ -25,6 +25,8 @@ public class DevolucaoView {
     public void exibirMenuDevolucao(){
         System.out.println("\n### MENU DE DEVOLUÇÃO ###");
 
+        aluguelController.listarAlugueis();
+
         try{
             System.out.print("Veículo a ser devolvido (placa): ");
             String placaDesejada = scanner.nextLine();

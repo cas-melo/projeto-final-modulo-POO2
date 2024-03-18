@@ -196,19 +196,7 @@ public class MenuPrincipal {
     }
 
     public void exibirDevolucoes(){
-        System.out.println("\n### LISTA DE ALUGUÉIS FINALIZADOS ###");
-
-        for (Devolucao devolucao : devolucaoController.listarDevolucoes()) {
-            String dataInicioFormat = devolucaoController.formatarLocalDateTime(devolucao.getDataInicio());
-            String dataFimFormat = devolucaoController.formatarLocalDateTime(devolucao.getDataFim());
-
-            System.out.println("\nModelo: " + devolucao.getVeiculo().getMarca() + " " + devolucao.getVeiculo().getModelo() +
-                    " | Placa: " + devolucao.getVeiculo().getPlaca() + " | Tipo: " + devolucao.getVeiculo().getTipo());
-            System.out.println("Cliente: " + devolucao.getCliente().getNome() + " | " +
-                    devolucao.getCliente().getTipoDocumento() + ": " + devolucao.getCliente().getDocumento());
-            System.out.println("Local: " + devolucao.getCidade() + " | Data de início: " + dataInicioFormat +
-                    " | Data do fim: " + dataFimFormat + " | Valor: " + devolucao.getValorTotal());
-        }
+        devolucaoController.listarDevolucoes();
 
         System.out.println("\nPressione ENTER para voltar ao menu principal.");
         scanner.nextLine();

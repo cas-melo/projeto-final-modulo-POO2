@@ -19,7 +19,7 @@ public class DevolucaoController {
         this.aluguelController = aluguelController;
     }
 
-    public void registrarDevolucao(Veiculo veiculo, Aluguel aluguel, LocalDateTime dataFim){
+    public void registrarDevolucao(Veiculo veiculo, Aluguel aluguel, LocalDateTime dataFim) {
 
         long totalHoras = ChronoUnit.MINUTES.between(aluguel.getDataInicio(), dataFim);
         int totalDias = DiariaHelper.converterMinutosEmDiarias(totalHoras);
@@ -27,13 +27,13 @@ public class DevolucaoController {
         Diaria diaria = new Diaria(totalDias, veiculo.getTipo(), desconto);
         double valorTotal = diaria.getValorTotal();
 
-        if (veiculo.isDisponivel()){
+        if (veiculo.isDisponivel()) {
             System.out.println("Veículo não pode ser devolvido pois não está alugado.");
             return;
         }
 
         Devolucao devolucao = new Devolucao(veiculo, aluguel.getCliente(), aluguel.getCidade(),
-        aluguel.getDataInicio(), dataFim, valorTotal);
+                aluguel.getDataInicio(), dataFim, valorTotal);
 
         AluguelService aluguelService = new AluguelService();
         aluguelService.devolverVeiculo(aluguel.getCliente(), veiculo);
@@ -48,7 +48,21 @@ public class DevolucaoController {
         return dataHora.format(formatter);
     }
 
-    public List<Devolucao> listarDevolucoes() {
-        return this.devolucoes;
+    public void listarDevolucoes() {
+        System.out.println("\n### LISTA DE ALUGUÉIS FINALIZADOS ###");
+
+        for (Devolucao devolucao : devolucoes) {
+            String dataInicioFormat = formatarLocalDateTime(devolucao.getDataInicio());
+            String dataFimFormat = formatarLocalDateTime(devolucao.getDataFim());
+
+            System.out.println("\nModelo: " + devolucao.getVeiculo().getMarca() + " " + devolucao.getVeiculo().getModelo() +
+                    " | Placa: " + devolucao.getVeiculo().getPlaca() + " | Tipo: " + devolucao.getVeiculo().getTipo());
+
+            System.out.println("Cliente: " + devolucao.getCliente().getNome() + " | " +
+                    devolucao.getCliente().getTipoDocumento() + ": " + devolucao.getCliente().getDocumento());
+
+            System.out.println("Local: " + devolucao.getCidade() + " | Data de início: " + dataInicioFormat +
+                    " | Data do fim: " + dataFimFormat + " | Valor: " + devolucao.getValorTotal());
+        }
     }
 }
