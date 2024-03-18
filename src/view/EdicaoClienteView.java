@@ -3,8 +3,11 @@ package view;
 import controller.ClienteController;
 import exceptions.*;
 import models.Cliente;
+import models.Veiculo;
+import services.AluguelService;
 import util.TipoCliente;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class EdicaoClienteView {
@@ -28,9 +31,20 @@ public class EdicaoClienteView {
 
             cliente = clienteController.buscarClientePorDocumento(documento);
 
+            List<Veiculo> veiculosDoCliente = AluguelService.getVeiculosPorCliente(cliente);
+
             if (cliente == null) {
                 throw new ClienteNaoEncontradoException("Documento " + documento + "não encontrado.");
             }
+
+            if (!veiculosDoCliente.isEmpty())
+            {
+                System.out.println("Por favor, devolva todos os veículos do cliente antes de efetuar a alteração.");
+
+                return;
+            }
+
+
 
             System.out.print("Digite o novo nome do cliente: ");
             String nome = scanner.nextLine();
