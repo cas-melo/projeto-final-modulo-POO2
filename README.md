@@ -41,7 +41,7 @@ Os princípios do SOLID foram considerados durante o desenvolvimento para garant
 - A utilização de generics e interfaces tornou o código mais flexível e reutilizável, permitindo uma implementação mais limpa e concisa.
 
 ### Dificuldades
-- A implementação das regras de devolução com base no tempo de aluguel foi desafiadora, especialmente a lógica para calcular os descontos com base no tipo de cliente.
+- A alteração de clientes, especialmente a transformação de pessoa física em pessoa jurídica e vice-versa, foi um desafio significativo. Isso envolveu lidar com diferentes tipos de dados e garantir que as informações relacionadas aos aluguéis também fossem atualizadas corretamente.
 - A gestão dos aluguéis e sua associação com os clientes e veículos exigiu um planejamento cuidadoso para garantir a consistência dos dados.
 
 ## Como Executar o Projeto

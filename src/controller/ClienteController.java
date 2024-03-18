@@ -1,5 +1,6 @@
 package controller;
 
+import exceptions.ClienteNaoEncontradoException;
 import models.*;
 import services.AluguelService;
 import util.GeradorCNPJ;
@@ -67,28 +68,41 @@ public class ClienteController {
 
     public void alterarCliente(String documento, String nome, TipoCliente tipo) {
         Cliente clienteExistente = buscarClientePorDocumento(documento);
-        Cliente novoCliente = null;
-        boolean tipoAlterado = false;
 
-        if (!clienteExistente.getNome().equals(nome)){
-            clienteExistente.setNome(nome);
-        }
+        try {
+            if (clienteExistente == null) {
+                throw new ClienteNaoEncontradoException("Documento " + documento + "não encontrado.");
+            }
+            Cliente novoCliente = null;
+            boolean tipoAlterado = false;
 
-        if ((clienteExistente instanceof PessoaFisica) && (tipo.equals(TipoCliente.PJ))) {
-            tipoAlterado = true;
-            novoCliente = new PessoaJuridica(nome);
-            novoCliente.setDocumento(GeradorCNPJ.gerarCNPJ());
-        } else if ((clienteExistente instanceof PessoaJuridica) && (tipo.equals(TipoCliente.PF))){
-            tipoAlterado = true;
-            novoCliente = new PessoaFisica(nome);
-            novoCliente.setDocumento(GeradorCPF.gerarCPF());
-        }
+            if (!clienteExistente.getNome().equals(nome)){
+                clienteExistente.setNome(nome);
+            }
 
-        if (tipoAlterado) {
-            clientes.remove(clienteExistente);
-            clientes.add(novoCliente);
+            if ((clienteExistente instanceof PessoaFisica) && (tipo.equals(TipoCliente.PJ))) {
+                tipoAlterado = true;
+                novoCliente = new PessoaJuridica(nome);
+                novoCliente.setDocumento(GeradorCNPJ.gerarCNPJ());
+            } else if ((clienteExistente instanceof PessoaJuridica) && (tipo.equals(TipoCliente.PF))){
+                tipoAlterado = true;
+                novoCliente = new PessoaFisica(nome);
+                novoCliente.setDocumento(GeradorCPF.gerarCPF());
+            }
 
-            aluguelService.alterarClienteAluguel(clienteExistente, novoCliente);
+            if (tipoAlterado) {
+                clientes.remove(clienteExistente);
+                clientes.add(novoCliente);
+
+                aluguelService.alterarClienteAluguel(clienteExistente, novoCliente); //TODO arrumar ou retirar
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro: " + e.getMessage());
+        } catch (ClienteNaoEncontradoException clienteNaoEncontradoException) {
+            System.out.println("Cliente não encontrado. Tente novamente!");
+        } catch (Exception e) {
+            System.out.println("Erro inesperado. Entre em contato com o suporte.");
+            e.printStackTrace();
         }
     }
 
@@ -124,7 +138,7 @@ public class ClienteController {
                 return cliente;
             }
         }
-        return null; //TODO tratar null
+        return null;
     }
 
     public void listarClientes() {

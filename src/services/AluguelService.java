@@ -35,6 +35,7 @@ public class AluguelService {
         }
     }
 
+    //TODO arrumar ou retirar
     public void alterarClienteAluguel(Cliente clienteAntigo, Cliente novoCliente) {
         for (Map.Entry<Cliente, List<Veiculo>> entry : alugueis.entrySet()) {
             if (entry.getKey().equals(clienteAntigo)) {
