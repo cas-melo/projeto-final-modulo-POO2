@@ -14,9 +14,11 @@ public class DiariaHelper {
 
         long totalHoras = minutos / 60;
         long minutosExcedentes = minutos % 60;
+        minutosExcedentes++;
 
         if(totalHoras <= 24) {
             totalDias = 1;
+            minutosExcedentes--;
         }
 
         while (totalHoras >= 24) {
