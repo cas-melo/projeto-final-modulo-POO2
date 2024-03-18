@@ -154,13 +154,14 @@ public class ClienteController {
 
             if (veiculos.isEmpty()){
                 System.out.println(" O cliente não possui veículos alugados.");
-                return;
-            }
+                }
+            else {
 
-            System.out.println("Veículos:");
-            for (Veiculo veiculo : veiculos) {
-                System.out.println("Modelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
-                        " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());
+                System.out.println("Veículos:");
+                for (Veiculo veiculo : veiculos) {
+                    System.out.println("Modelo: " + veiculo.getMarca() + " " + veiculo.getModelo() +
+                            " | Placa: " + veiculo.getPlaca() + " | Tipo: " + veiculo.getTipo());
+                }
             }
         }
     }
