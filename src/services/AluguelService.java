@@ -28,7 +28,7 @@ public class AluguelService {
     }
 
     public void devolverVeiculo(Cliente cliente, Veiculo veiculo) {
-        if (alugueis.containsKey(veiculo) && alugueis.get(cliente).contains(veiculo)) {
+        if (alugueis.getOrDefault(cliente, new ArrayList<>()).contains(veiculo)) {
             veiculo.setDisponivel(true);
             alugueis.get(cliente).remove(veiculo);
         }
