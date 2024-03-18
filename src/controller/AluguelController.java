@@ -10,9 +10,11 @@ import java.util.List;
 public class AluguelController {
 
     private List<Aluguel> alugueis;
+    private AluguelService aluguelService;
 
-    public AluguelController() {
+    public AluguelController(AluguelService aluguelService) {
         this.alugueis = new ArrayList<>();
+        this.aluguelService = aluguelService;
     }
 
     public void realizarAluguel(Veiculo veiculo, Cliente cliente, String cidade) {
@@ -20,7 +22,6 @@ public class AluguelController {
 
             Aluguel aluguel = new Aluguel(veiculo, cliente, cidade, LocalDateTime.now());
 
-            AluguelService aluguelService = new AluguelService();
             aluguelService.alugarVeiculo(cliente, veiculo);
 
             this.alugueis.add(aluguel);
